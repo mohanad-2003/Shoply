@@ -1,0 +1,141 @@
+name: ui_kit
+description: "A premium Clean Architecture + Bloc e-commerce app (Phase 1)."
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # State management
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.5
+
+  # Routing
+  go_router: ^17.3.0
+
+  # Networking
+  dio: ^5.7.0
+  retrofit: ^4.4.1
+  pretty_dio_logger: ^1.4.0
+
+  # Codegen annotations
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.12.0
+
+  # Dependency injection
+  get_it: ^9.2.1
+  injectable: ^3.0.0
+
+  # Local storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.3.3
+  flutter_secure_storage: ^10.3.1
+
+  # Connectivity
+  internet_connection_checker_plus: ^3.1.1
+
+  # UI / responsiveness
+  flutter_screenutil: ^5.9.3
+  cached_network_image: ^3.4.1
+  lottie: ^3.2.1
+  flutter_svg: ^2.0.14
+  shimmer: ^3.0.0
+  responsive_framework: ^1.5.1
+  intl: ^0.20.2
+
+  # Functional error handling
+  fpdart: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.4.13
+  freezed: ^3.2.5
+  json_serializable: ^6.9.0
+  injectable_generator: ^3.0.2
+  retrofit_generator: ^10.2.7
+  bloc_test: ^10.0.0
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/vector.png
+    - assets/facebook.png
+    - assets/apple.png
+    - assets/google.png
+    - assets/main.png
+    - assets/profile.png
+    - assets/beauty.png
+    - assets/kids.png
+    - assets/mens.png
+    - assets/womens.png
+    - assets/grifts.png
+    - assets/fashion.png
+    - assets/image.png
+    - assets/hour.png
+    - assets/shope1.png
+    - assets/sales.png
+    - assets/order.png
+    - assets/mask.png
+    - assets/mask2.png
+    - assets/mask3.png
+    - assets/mask4.png
+    - assets/rectangle.png
+    - assets/rectangle2.png
+    - assets/groub.png
+    - assets/rectangle3.png
+    - assets/hour2.png
+    - assets/maskgroub1.png
+    - assets/maskgroub2.png
+    - assets/maskgroub3.png
+    - assets/shose.png
+    - assets/maskgroub4.png
+    - assets/mask5.png
+    - assets/store.png
+    - assets/fillter.png
+    - assets/p1.png
+    - assets/p2.png
+    - assets/p3.png
+    - assets/p4.png
+    - assets/p5.png
+    - assets/p6.png
+    - assets/p7.png
+    - assets/p8.png
+    - assets/p9.png
+    - assets/p10.png
+    - assets/p11.png
+    - assets/p12.png
+    - assets/p13.png
+    - assets/p14.png
+    - assets/sh1.png
+    - assets/sh2.png
+    - assets/sh3.png
+    - assets/sh4.png
+    - assets/sh5.png
+    - assets/nike1.png
+    - assets/nike2.png
+    - assets/nike3.png
+    - assets/nike4.png
+    - assets/hand.png
+    - assets/check.png
+    - assets/personal.png
+    - assets/men.png
+    - assets/icon.png
+    - assets/paypal.png
+    - assets/visa.png
+    - assets/maestro.png
+    - assets/app.png
+    - assets/star.png

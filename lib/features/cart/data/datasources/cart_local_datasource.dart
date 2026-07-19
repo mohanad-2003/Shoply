@@ -1,0 +1,81 @@
+import 'dart:convert';
+
+import 'package:hive/hive.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../../../core/constants/app_constants.dart';
+import '../../../../core/errors/exceptions.dart';
+import '../models/cart_item_model.dart';
+
+/// Hive `cart_box` is the single source of truth for the cart. Reads are
+/// wrapped in [Future] so the UI can show shimmer while "loading".
+abstract class CartLocalDataSource {
+  Future<List<CartItemModel>> getItems();
+  Future<void> addItem(CartItemModel item);
+  Future<void> updateQuantity(String itemId, int quantity);
+  Future<void> removeItem(String itemId);
+}
+
+@LazySingleton(as: CartLocalDataSource)
+class CartLocalDataSourceImpl implements CartLocalDataSource {
+  CartLocalDataSourceImpl(@Named(AppConstants.cartBox) this._box);
+
+  final Box _box;
+
+  @override
+  Future<List<CartItemModel>> getItems() async {
+    await Future<void>.delayed(AppConstants.mockShortDelay);
+    try {
+      return _box.values
+          .map((raw) =>
+              CartItemModel.fromJson(jsonDecode(raw as String) as Map<String, dynamic>))
+          .toList();
+    } catch (_) {
+      throw const CacheException('Failed to read cart');
+    }
+  }
+
+  @override
+  Future<void> addItem(CartItemModel item) async {
+    try {
+      final existingRaw = _box.get(item.id);
+      if (existingRaw is String) {
+        final existing = CartItemModel.fromJson(
+            jsonDecode(existingRaw) as Map<String, dynamic>);
+        final merged =
+            existing.copyWith(quantity: existing.quantity + item.quantity);
+        await _box.put(item.id, jsonEncode(merged.toJson()));
+      } else {
+        await _box.put(item.id, jsonEncode(item.toJson()));
+      }
+    } catch (_) {
+      throw const CacheException('Failed to add item to cart');
+    }
+  }
+
+  @override
+  Future<void> updateQuantity(String itemId, int quantity) async {
+    try {
+      final raw = _box.get(itemId);
+      if (raw is! String) return;
+      final item =
+          CartItemModel.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+      if (quantity <= 0) {
+        await _box.delete(itemId);
+      } else {
+        await _box.put(itemId, jsonEncode(item.copyWith(quantity: quantity).toJson()));
+      }
+    } catch (_) {
+      throw const CacheException('Failed to update quantity');
+    }
+  }
+
+  @override
+  Future<void> removeItem(String itemId) async {
+    try {
+      await _box.delete(itemId);
+    } catch (_) {
+      throw const CacheException('Failed to remove item');
+    }
+  }
+}
