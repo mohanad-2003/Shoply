@@ -32,6 +32,9 @@ import '../../features/auth/domain/usecases/get_cached_user_usecase.dart'
 import '../../features/auth/domain/usecases/login_usecase.dart' as _i188;
 import '../../features/auth/domain/usecases/logout_usecase.dart' as _i48;
 import '../../features/auth/domain/usecases/register_usecase.dart' as _i941;
+import '../../features/auth/domain/usecases/reset_password_usecase.dart'
+    as _i474;
+import '../../features/auth/domain/usecases/verify_otp_usecase.dart' as _i503;
 import '../../features/auth/presentation/bloc/auth_bloc.dart' as _i797;
 import '../../features/cart/data/datasources/cart_local_datasource.dart'
     as _i339;
@@ -55,6 +58,8 @@ import '../../features/home/domain/repositories/home_repository.dart' as _i0;
 import '../../features/home/domain/usecases/get_home_data_usecase.dart'
     as _i1033;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
+import '../../features/language_select/presentation/cubit/language_select_cubit.dart'
+    as _i258;
 import '../../features/onboarding/presentation/cubit/onboarding_cubit.dart'
     as _i807;
 import '../../features/product/data/datasources/favorites_local_datasource.dart'
@@ -179,6 +184,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i992.AuthLocalDataSource>(),
       ),
     );
+    gh.factory<_i258.LanguageSelectCubit>(
+      () => _i258.LanguageSelectCubit(
+        gh<_i960.LocaleCubit>(),
+        gh<_i460.SharedPreferences>(),
+      ),
+    );
     gh.lazySingleton<_i843.FavoritesRepository>(
       () => _i981.FavoritesRepositoryImpl(gh<_i10.FavoritesLocalDataSource>()),
     );
@@ -236,6 +247,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i941.RegisterUseCase>(
       () => _i941.RegisterUseCase(gh<_i787.AuthRepository>()),
     );
+    gh.factory<_i474.ResetPasswordUseCase>(
+      () => _i474.ResetPasswordUseCase(gh<_i787.AuthRepository>()),
+    );
+    gh.factory<_i503.VerifyOtpUseCase>(
+      () => _i503.VerifyOtpUseCase(gh<_i787.AuthRepository>()),
+    );
     gh.factory<_i517.CartBloc>(
       () => _i517.CartBloc(
         gh<_i179.GetCartUseCase>(),
@@ -244,19 +261,21 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i759.ApplyPromoUseCase>(),
       ),
     );
+    gh.lazySingleton<_i0.HomeRepository>(
+      () => _i76.HomeRepositoryImpl(
+        gh<_i278.HomeRemoteDataSource>(),
+        gh<_i843.FavoritesRepository>(),
+      ),
+    );
     gh.factory<_i797.AuthBloc>(
       () => _i797.AuthBloc(
         gh<_i188.LoginUseCase>(),
         gh<_i941.RegisterUseCase>(),
         gh<_i560.ForgotPasswordUseCase>(),
+        gh<_i503.VerifyOtpUseCase>(),
+        gh<_i474.ResetPasswordUseCase>(),
         gh<_i389.GetCachedUserUseCase>(),
         gh<_i48.LogoutUseCase>(),
-      ),
-    );
-    gh.lazySingleton<_i0.HomeRepository>(
-      () => _i76.HomeRepositoryImpl(
-        gh<_i278.HomeRemoteDataSource>(),
-        gh<_i843.FavoritesRepository>(),
       ),
     );
     gh.factory<_i1033.GetHomeDataUseCase>(

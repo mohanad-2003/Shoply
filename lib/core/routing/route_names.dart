@@ -5,10 +5,16 @@ class RouteNames {
 
   // Implemented in Phase 1.
   static const String splash = '/splash';
+  static const String languageSelect = '/language-select';
   static const String onboarding = '/onboarding';
+  static const String welcome = '/welcome';
   static const String login = '/login';
   static const String register = '/register';
   static const String forgotPassword = '/forgot-password';
+  static const String otpVerification = '/otp-verification';
+  static const String createNewPassword = '/create-new-password';
+  static const String passwordResetSuccess = '/password-reset-success';
+  static const String termsPrivacy = '/terms-privacy';
   static const String home = '/home';
   static const String product = '/product/:id';
   static const String cart = '/cart';
@@ -26,10 +32,16 @@ class RouteNames {
 
   // Route names (used for context.goNamed).
   static const String nSplash = 'splash';
+  static const String nLanguageSelect = 'languageSelect';
   static const String nOnboarding = 'onboarding';
+  static const String nWelcome = 'welcome';
   static const String nLogin = 'login';
   static const String nRegister = 'register';
   static const String nForgotPassword = 'forgotPassword';
+  static const String nOtpVerification = 'otpVerification';
+  static const String nCreateNewPassword = 'createNewPassword';
+  static const String nPasswordResetSuccess = 'passwordResetSuccess';
+  static const String nTermsPrivacy = 'termsPrivacy';
   static const String nHome = 'home';
   static const String nProduct = 'product';
   static const String nCart = 'cart';

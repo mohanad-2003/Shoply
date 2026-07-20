@@ -103,6 +103,126 @@ class AppLocalizationsAr extends AppLocalizations {
   String get backToLogin => 'العودة لتسجيل الدخول';
 
   @override
+  String get selectLanguage => 'اختر لغتك';
+
+  @override
+  String get selectLanguageSubtitle =>
+      'اختر لغتك المفضّلة للمتابعة. يمكنك تغييرها لاحقًا من الإعدادات.';
+
+  @override
+  String get continueLabel => 'متابعة';
+
+  @override
+  String get welcomeTitle => 'أهلًا بك في شوبلي';
+
+  @override
+  String get welcomeTagline =>
+      'تسوّق بذكاء. اكتشف منتجات مميّزة واستمتع بتجربة تسوّق سلسة وممتعة.';
+
+  @override
+  String get continueAsGuest => 'المتابعة كضيف';
+
+  @override
+  String get otpTitle => 'رمز التحقّق';
+
+  @override
+  String get otpSubtitle => 'أدخل الرمز المكوّن من 4 أرقام الذي أرسلناه إلى';
+
+  @override
+  String get verify => 'تحقّق';
+
+  @override
+  String get didntReceiveCode => 'لم تستلم الرمز؟';
+
+  @override
+  String get resendCode => 'إعادة إرسال الرمز';
+
+  @override
+  String resendIn(String seconds) {
+    return 'إعادة الإرسال خلال $seconds';
+  }
+
+  @override
+  String get invalidOtp =>
+      'الرمز الذي أدخلته غير صحيح. يُرجى المحاولة مرة أخرى.';
+
+  @override
+  String get resetPasswordTitle => 'إنشاء كلمة مرور جديدة';
+
+  @override
+  String get resetPasswordSubtitle =>
+      'يجب أن تختلف كلمة المرور الجديدة عن كلمات المرور المستخدمة سابقًا.';
+
+  @override
+  String get newPassword => 'كلمة المرور الجديدة';
+
+  @override
+  String get confirmNewPassword => 'تأكيد كلمة المرور الجديدة';
+
+  @override
+  String get resetPassword => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get passwordStrength => 'قوة كلمة المرور';
+
+  @override
+  String get weak => 'ضعيفة';
+
+  @override
+  String get medium => 'متوسطة';
+
+  @override
+  String get strong => 'قوية';
+
+  @override
+  String get passwordResetSuccessTitle => 'تمت إعادة التعيين';
+
+  @override
+  String get passwordResetSuccessBody =>
+      'تمت إعادة تعيين كلمة مرورك بنجاح. يمكنك الآن تسجيل الدخول باستخدام كلمة المرور الجديدة.';
+
+  @override
+  String get agreeToTerms => 'أوافق على ';
+
+  @override
+  String get termsAndPrivacy => 'الشروط وسياسة الخصوصية';
+
+  @override
+  String get mustAcceptTerms =>
+      'يُرجى الموافقة على الشروط وسياسة الخصوصية للمتابعة.';
+
+  @override
+  String get termsPrivacyTitle => 'الشروط والخصوصية';
+
+  @override
+  String get termsSectionUseTitle => '1. استخدام الخدمة';
+
+  @override
+  String get termsSectionUseBody =>
+      'بوصولك إلى شوبلي أو استخدامك له، فإنك توافق على الالتزام بهذه الشروط. أنت مسؤول عن الحفاظ على سرّية حسابك وعن جميع الأنشطة التي تجري من خلاله.';
+
+  @override
+  String get termsSectionPurchasesTitle => '2. الطلبات والمدفوعات';
+
+  @override
+  String get termsSectionPurchasesBody =>
+      'تخضع جميع عمليات الشراء لتوفّر المنتج وتأكيد السعر. ونحتفظ بالحق في إلغاء أي طلب في حالات الاشتباه بالاحتيال أو أخطاء التسعير.';
+
+  @override
+  String get termsSectionPrivacyTitle => '3. الخصوصية والبيانات';
+
+  @override
+  String get termsSectionPrivacyBody =>
+      'نجمع فقط المعلومات اللازمة لتقديم خدماتنا وتحسينها. ولا تُباع بياناتك الشخصية أبدًا لأي طرف ثالث، وتُحمى باستخدام معايير الأمان المتّبعة في القطاع.';
+
+  @override
+  String get termsSectionContactTitle => '4. تواصل معنا';
+
+  @override
+  String get termsSectionContactBody =>
+      'إذا كان لديك أي استفسار حول هذه الشروط أو كيفية تعاملنا مع بياناتك، تواصل مع فريق الدعم عبر support@shoply.com.';
+
+  @override
   String get fieldRequired => 'هذا الحقل مطلوب';
 
   @override

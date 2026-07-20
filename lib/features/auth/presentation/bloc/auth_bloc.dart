@@ -9,6 +9,8 @@ import '../../domain/usecases/get_cached_user_usecase.dart';
 import '../../domain/usecases/login_usecase.dart';
 import '../../domain/usecases/logout_usecase.dart';
 import '../../domain/usecases/register_usecase.dart';
+import '../../domain/usecases/reset_password_usecase.dart';
+import '../../domain/usecases/verify_otp_usecase.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -19,6 +21,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     this._login,
     this._register,
     this._forgotPassword,
+    this._verifyOtp,
+    this._resetPassword,
     this._getCachedUser,
     this._logout,
   ) : super(const AuthState()) {
@@ -26,12 +30,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthLoginRequested>(_onLogin);
     on<AuthRegisterRequested>(_onRegister);
     on<AuthForgotPasswordRequested>(_onForgotPassword);
+    on<AuthOtpVerifyRequested>(_onVerifyOtp);
+    on<AuthResetPasswordRequested>(_onResetPassword);
     on<AuthLogoutRequested>(_onLogout);
   }
 
   final LoginUseCase _login;
   final RegisterUseCase _register;
   final ForgotPasswordUseCase _forgotPassword;
+  final VerifyOtpUseCase _verifyOtp;
+  final ResetPasswordUseCase _resetPassword;
   final GetCachedUserUseCase _getCachedUser;
   final LogoutUseCase _logout;
 
@@ -100,7 +108,49 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (failure) => emit(
         state.copyWith(status: AuthStatus.failure, failureKey: failure.l10nKey),
       ),
-      (_) => emit(state.copyWith(status: AuthStatus.passwordResetSent)),
+      (_) => emit(
+        state.copyWith(
+          status: AuthStatus.passwordResetSent,
+          pendingEmail: event.email,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _onVerifyOtp(
+    AuthOtpVerifyRequested event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(state.copyWith(status: AuthStatus.loading));
+    final result = await _verifyOtp(
+      VerifyOtpParams(email: state.pendingEmail ?? '', code: event.code),
+    );
+    result.match(
+      (failure) => emit(
+        state.copyWith(status: AuthStatus.failure, failureKey: failure.l10nKey),
+      ),
+      (token) => emit(
+        state.copyWith(status: AuthStatus.otpVerified, resetToken: token),
+      ),
+    );
+  }
+
+  Future<void> _onResetPassword(
+    AuthResetPasswordRequested event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(state.copyWith(status: AuthStatus.loading));
+    final result = await _resetPassword(
+      ResetPasswordParams(
+        resetToken: state.resetToken ?? '',
+        newPassword: event.newPassword,
+      ),
+    );
+    result.match(
+      (failure) => emit(
+        state.copyWith(status: AuthStatus.failure, failureKey: failure.l10nKey),
+      ),
+      (_) => emit(state.copyWith(status: AuthStatus.passwordResetSuccess)),
     );
   }
 

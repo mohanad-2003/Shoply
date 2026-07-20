@@ -62,6 +62,35 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<Either<Failure, String>> verifyOtp({
+    required String email,
+    required String code,
+  }) async {
+    try {
+      final token = await _remote.verifyOtp(email: email, code: code);
+      return Right(token);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> resetPassword({
+    required String resetToken,
+    required String newPassword,
+  }) async {
+    try {
+      await _remote.resetPassword(
+        resetToken: resetToken,
+        newPassword: newPassword,
+      );
+      return const Right(unit);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+  @override
   Future<Either<Failure, UserEntity?>> getCachedUser() async {
     try {
       final UserModel? user = await _local.getCachedUser();

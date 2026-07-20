@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../core/constants/app_constants.dart';
 
 /// Where the splash screen should route to once its checks complete.
-enum SplashDestination { onboarding, login, home }
+enum SplashDestination { languageSelect, onboarding, login, home }
 
 /// Resolves the initial destination: onboarding (first launch) → login
 /// (returning, signed out) → home (cached user present). Home is browsable in
@@ -23,6 +23,13 @@ class SplashCubit extends Cubit<SplashDestination?> {
 
   Future<void> decide() async {
     await Future<void>.delayed(const Duration(milliseconds: 1600));
+
+    final languageSelected =
+        _prefs.getBool(AppConstants.prefLanguageSelected) ?? false;
+    if (!languageSelected) {
+      emit(SplashDestination.languageSelect);
+      return;
+    }
 
     final seenOnboarding =
         _prefs.getBool(AppConstants.prefOnboardingSeen) ?? false;

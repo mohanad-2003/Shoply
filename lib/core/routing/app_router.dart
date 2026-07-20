@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/auth/presentation/pages/create_new_password_page.dart';
 import '../../features/auth/presentation/pages/forgot_password_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/auth/presentation/pages/otp_verification_page.dart';
+import '../../features/auth/presentation/pages/password_reset_success_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
+import '../../features/auth/presentation/pages/terms_privacy_page.dart';
+import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/language_select/presentation/pages/language_select_page.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
 import '../../features/product/presentation/pages/product_details_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
+import '../di/injection.dart';
 import '../widgets/coming_soon_page.dart';
 import 'route_names.dart';
 
@@ -27,9 +36,19 @@ class AppRouter {
         builder: (_, _) => const SplashPage(),
       ),
       GoRoute(
+        path: RouteNames.languageSelect,
+        name: RouteNames.nLanguageSelect,
+        pageBuilder: (_, state) => _fade(state, const LanguageSelectPage()),
+      ),
+      GoRoute(
         path: RouteNames.onboarding,
         name: RouteNames.nOnboarding,
         pageBuilder: (_, state) => _fade(state, const OnboardingPage()),
+      ),
+      GoRoute(
+        path: RouteNames.welcome,
+        name: RouteNames.nWelcome,
+        pageBuilder: (_, state) => _fade(state, const WelcomePage()),
       ),
       GoRoute(
         path: RouteNames.login,
@@ -42,9 +61,44 @@ class AppRouter {
         pageBuilder: (_, state) => _slide(state, const RegisterPage()),
       ),
       GoRoute(
-        path: RouteNames.forgotPassword,
-        name: RouteNames.nForgotPassword,
-        pageBuilder: (_, state) => _slide(state, const ForgotPasswordPage()),
+        path: RouteNames.termsPrivacy,
+        name: RouteNames.nTermsPrivacy,
+        pageBuilder: (_, state) => _slide(state, const TermsPrivacyPage()),
+      ),
+
+      // Password-reset chain shares a single AuthBloc so pendingEmail /
+      // resetToken persist across ForgotPassword → OTP → CreateNewPassword.
+      ShellRoute(
+        builder: (_, _, child) => BlocProvider(
+          create: (_) => sl<AuthBloc>(),
+          child: child,
+        ),
+        routes: [
+          GoRoute(
+            path: RouteNames.forgotPassword,
+            name: RouteNames.nForgotPassword,
+            pageBuilder: (_, state) =>
+                _slide(state, const ForgotPasswordPage()),
+          ),
+          GoRoute(
+            path: RouteNames.otpVerification,
+            name: RouteNames.nOtpVerification,
+            pageBuilder: (_, state) =>
+                _slide(state, const OtpVerificationPage()),
+          ),
+          GoRoute(
+            path: RouteNames.createNewPassword,
+            name: RouteNames.nCreateNewPassword,
+            pageBuilder: (_, state) =>
+                _slide(state, const CreateNewPasswordPage()),
+          ),
+          GoRoute(
+            path: RouteNames.passwordResetSuccess,
+            name: RouteNames.nPasswordResetSuccess,
+            pageBuilder: (_, state) =>
+                _slide(state, const PasswordResetSuccessPage()),
+          ),
+        ],
       ),
       GoRoute(
         path: RouteNames.home,

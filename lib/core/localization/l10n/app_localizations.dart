@@ -278,6 +278,222 @@ abstract class AppLocalizations {
   /// **'Back to Log In'**
   String get backToLogin;
 
+  /// No description provided for @selectLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Your Language'**
+  String get selectLanguage;
+
+  /// No description provided for @selectLanguageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your preferred language to continue. You can change it later in settings.'**
+  String get selectLanguageSubtitle;
+
+  /// No description provided for @continueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueLabel;
+
+  /// No description provided for @welcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Shoply'**
+  String get welcomeTitle;
+
+  /// No description provided for @welcomeTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop smarter. Discover premium products and enjoy a seamless, delightful shopping experience.'**
+  String get welcomeTagline;
+
+  /// No description provided for @continueAsGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue as Guest'**
+  String get continueAsGuest;
+
+  /// No description provided for @otpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification Code'**
+  String get otpTitle;
+
+  /// No description provided for @otpSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 4-digit code we sent to'**
+  String get otpSubtitle;
+
+  /// No description provided for @verify.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get verify;
+
+  /// No description provided for @didntReceiveCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t receive the code?'**
+  String get didntReceiveCode;
+
+  /// No description provided for @resendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend Code'**
+  String get resendCode;
+
+  /// No description provided for @resendIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend in {seconds}'**
+  String resendIn(String seconds);
+
+  /// No description provided for @invalidOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'The code you entered is incorrect. Please try again.'**
+  String get invalidOtp;
+
+  /// No description provided for @resetPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create New Password'**
+  String get resetPasswordTitle;
+
+  /// No description provided for @resetPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your new password must be different from previously used passwords.'**
+  String get resetPasswordSubtitle;
+
+  /// No description provided for @newPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get newPassword;
+
+  /// No description provided for @confirmNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm New Password'**
+  String get confirmNewPassword;
+
+  /// No description provided for @resetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPassword;
+
+  /// No description provided for @passwordStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Password strength'**
+  String get passwordStrength;
+
+  /// No description provided for @weak.
+  ///
+  /// In en, this message translates to:
+  /// **'Weak'**
+  String get weak;
+
+  /// No description provided for @medium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get medium;
+
+  /// No description provided for @strong.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong'**
+  String get strong;
+
+  /// No description provided for @passwordResetSuccessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Password Reset'**
+  String get passwordResetSuccessTitle;
+
+  /// No description provided for @passwordResetSuccessBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your password has been reset successfully. You can now log in with your new password.'**
+  String get passwordResetSuccessBody;
+
+  /// No description provided for @agreeToTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the '**
+  String get agreeToTerms;
+
+  /// No description provided for @termsAndPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms & Privacy Policy'**
+  String get termsAndPrivacy;
+
+  /// No description provided for @mustAcceptTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'Please accept the Terms & Privacy Policy to continue.'**
+  String get mustAcceptTerms;
+
+  /// No description provided for @termsPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms & Privacy'**
+  String get termsPrivacyTitle;
+
+  /// No description provided for @termsSectionUseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Use of Service'**
+  String get termsSectionUseTitle;
+
+  /// No description provided for @termsSectionUseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'By accessing or using Shoply, you agree to be bound by these terms. You are responsible for maintaining the confidentiality of your account and for all activity that occurs under it.'**
+  String get termsSectionUseBody;
+
+  /// No description provided for @termsSectionPurchasesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Orders & Payments'**
+  String get termsSectionPurchasesTitle;
+
+  /// No description provided for @termsSectionPurchasesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'All purchases are subject to product availability and price confirmation. We reserve the right to cancel any order in cases of suspected fraud or pricing errors.'**
+  String get termsSectionPurchasesBody;
+
+  /// No description provided for @termsSectionPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'3. Privacy & Data'**
+  String get termsSectionPrivacyTitle;
+
+  /// No description provided for @termsSectionPrivacyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We collect only the information needed to provide and improve our services. Your personal data is never sold to third parties and is protected using industry-standard security measures.'**
+  String get termsSectionPrivacyBody;
+
+  /// No description provided for @termsSectionContactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'4. Contact Us'**
+  String get termsSectionContactTitle;
+
+  /// No description provided for @termsSectionContactBody.
+  ///
+  /// In en, this message translates to:
+  /// **'If you have any questions about these terms or how we handle your data, reach out to our support team at support@shoply.com.'**
+  String get termsSectionContactBody;
+
   /// No description provided for @fieldRequired.
   ///
   /// In en, this message translates to:

@@ -10,6 +10,8 @@ import 'package:ui_kit/features/auth/domain/usecases/get_cached_user_usecase.dar
 import 'package:ui_kit/features/auth/domain/usecases/login_usecase.dart';
 import 'package:ui_kit/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:ui_kit/features/auth/domain/usecases/register_usecase.dart';
+import 'package:ui_kit/features/auth/domain/usecases/reset_password_usecase.dart';
+import 'package:ui_kit/features/auth/domain/usecases/verify_otp_usecase.dart';
 import 'package:ui_kit/features/auth/presentation/bloc/auth_bloc.dart';
 
 class _MockLogin extends Mock implements LoginUseCase {}
@@ -17,6 +19,10 @@ class _MockLogin extends Mock implements LoginUseCase {}
 class _MockRegister extends Mock implements RegisterUseCase {}
 
 class _MockForgot extends Mock implements ForgotPasswordUseCase {}
+
+class _MockVerifyOtp extends Mock implements VerifyOtpUseCase {}
+
+class _MockResetPassword extends Mock implements ResetPasswordUseCase {}
 
 class _MockGetCached extends Mock implements GetCachedUserUseCase {}
 
@@ -26,6 +32,8 @@ void main() {
   late _MockLogin login;
   late _MockRegister register;
   late _MockForgot forgot;
+  late _MockVerifyOtp verifyOtp;
+  late _MockResetPassword resetPassword;
   late _MockGetCached getCached;
   late _MockLogout logout;
 
@@ -43,11 +51,21 @@ void main() {
     login = _MockLogin();
     register = _MockRegister();
     forgot = _MockForgot();
+    verifyOtp = _MockVerifyOtp();
+    resetPassword = _MockResetPassword();
     getCached = _MockGetCached();
     logout = _MockLogout();
   });
 
-  AuthBloc build() => AuthBloc(login, register, forgot, getCached, logout);
+  AuthBloc build() => AuthBloc(
+        login,
+        register,
+        forgot,
+        verifyOtp,
+        resetPassword,
+        getCached,
+        logout,
+      );
 
   blocTest<AuthBloc, AuthState>(
     'emits [loading, authenticated] on successful login',

@@ -10,47 +10,37 @@ import '../../../../core/utils/input_validators.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text_field.dart';
-import '../../../../core/widgets/auth_error_banner.dart';
 import '../../../../core/widgets/custom_snackbar.dart';
+import '../../../../core/widgets/password_strength_indicator.dart';
 import '../bloc/auth_bloc.dart';
 import '../widgets/auth_header.dart';
 
-class ForgotPasswordPage extends StatelessWidget {
-  const ForgotPasswordPage({super.key});
+class CreateNewPasswordPage extends StatefulWidget {
+  const CreateNewPasswordPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // AuthBloc is provided by the password-reset ShellRoute so pendingEmail /
-    // resetToken persist across the OTP → reset chain.
-    return const _ForgotPasswordView();
-  }
+  State<CreateNewPasswordPage> createState() => _CreateNewPasswordPageState();
 }
 
-class _ForgotPasswordView extends StatefulWidget {
-  const _ForgotPasswordView();
-
-  @override
-  State<_ForgotPasswordView> createState() => _ForgotPasswordViewState();
-}
-
-class _ForgotPasswordViewState extends State<_ForgotPasswordView> {
+class _CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  bool _showBanner = false;
-  String? _bannerKey;
+  final _passwordController = TextEditingController();
+  final _confirmController = TextEditingController();
+  String _password = '';
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmController.dispose();
     super.dispose();
   }
 
   void _submit() {
     context.hideKeyboard();
     if (_formKey.currentState?.validate() ?? false) {
-      context
-          .read<AuthBloc>()
-          .add(AuthForgotPasswordRequested(email: _emailController.text));
+      context.read<AuthBloc>().add(
+            AuthResetPasswordRequested(newPassword: _passwordController.text),
+          );
     }
   }
 
@@ -63,14 +53,10 @@ class _ForgotPasswordViewState extends State<_ForgotPasswordView> {
         top: false,
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
-            if (state.status == AuthStatus.passwordResetSent) {
-              context.pushNamed(RouteNames.nOtpVerification);
+            if (state.status == AuthStatus.passwordResetSuccess) {
+              context.pushNamed(RouteNames.nPasswordResetSuccess);
             } else if (state.status == AuthStatus.failure &&
                 state.failureKey != null) {
-              setState(() {
-                _showBanner = true;
-                _bannerKey = state.failureKey;
-              });
               AppSnackbar.error(context, tr(context, state.failureKey!));
             }
           },
@@ -86,36 +72,41 @@ class _ForgotPasswordViewState extends State<_ForgotPasswordView> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     AuthHeader(
-                      title: l10n.forgotPasswordTitle,
-                      subtitle: l10n.forgotPasswordSubtitle,
+                      title: l10n.resetPasswordTitle,
+                      subtitle: l10n.resetPasswordSubtitle,
                     ),
-                    if (_showBanner && _bannerKey != null)
-                      AuthErrorBanner(
-                        failureKey: _bannerKey!,
-                        onDismiss: () => setState(() => _showBanner = false),
-                      ),
                     AppTextField(
-                      controller: _emailController,
-                      label: l10n.email,
-                      prefixIcon: Icons.mail_outline_rounded,
-                      keyboardType: TextInputType.emailAddress,
+                      controller: _passwordController,
+                      label: l10n.newPassword,
+                      prefixIcon: Icons.lock_outline_rounded,
+                      obscureText: true,
+                      textInputAction: TextInputAction.next,
+                      onChanged: (v) => setState(() => _password = v),
+                      validator: (v) {
+                        final key = InputValidators.password(v);
+                        return key == null ? null : tr(context, key);
+                      },
+                    ),
+                    PasswordStrengthIndicator(password: _password),
+                    SizedBox(height: AppSpacing.vLg),
+                    AppTextField(
+                      controller: _confirmController,
+                      label: l10n.confirmNewPassword,
+                      prefixIcon: Icons.lock_outline_rounded,
+                      obscureText: true,
                       textInputAction: TextInputAction.done,
                       onSubmitted: (_) => _submit(),
                       validator: (v) {
-                        final key = InputValidators.email(v);
+                        final key = InputValidators.confirmPassword(
+                            v, _passwordController.text);
                         return key == null ? null : tr(context, key);
                       },
                     ),
                     SizedBox(height: AppSpacing.vXxl),
                     AppButton(
-                      label: l10n.sendResetLink,
+                      label: l10n.resetPassword,
                       isLoading: state.isLoading,
                       onPressed: _submit,
-                    ),
-                    SizedBox(height: AppSpacing.vLg),
-                    TextButton(
-                      onPressed: () => context.pop(),
-                      child: Text(l10n.backToLogin),
                     ),
                   ],
                 ),

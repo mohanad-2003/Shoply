@@ -21,6 +21,10 @@ String _lookup(AppLocalizations l, String key) {
       return l.passwordsDoNotMatch;
     case 'nameTooShort':
       return l.nameTooShort;
+    case 'invalidOtp':
+      return l.invalidOtp;
+    case 'mustAcceptTerms':
+      return l.mustAcceptTerms;
     // Failures.
     case 'serverError':
       return l.serverError;

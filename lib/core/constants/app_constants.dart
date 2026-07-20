@@ -20,6 +20,7 @@ class AppConstants {
   static const String prefThemeMode = 'pref_theme_mode';
   static const String prefLocale = 'pref_locale';
   static const String prefOnboardingSeen = 'pref_onboarding_seen';
+  static const String prefLanguageSelected = 'pref_language_selected';
 
   // Secure storage keys.
   static const String secureAuthToken = 'secure_auth_token';
@@ -33,4 +34,8 @@ class AppConstants {
   static const String reservedExistingEmail = 'existing@shoply.com';
   static const String reservedFailEmail = 'fail@shoply.com';
   static const String unknownProductId = 'unknown';
+
+  /// OTP code that deterministically verifies in the mock reset flow. Any other
+  /// 4-digit code fails with a validation failure so error UI is reachable.
+  static const String reservedOtpCode = '1234';
 }

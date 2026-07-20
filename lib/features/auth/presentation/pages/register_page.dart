@@ -11,7 +11,9 @@ import '../../../../core/utils/input_validators.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text_field.dart';
+import '../../../../core/widgets/auth_error_banner.dart';
 import '../../../../core/widgets/custom_snackbar.dart';
+import '../../../../core/widgets/terms_checkbox.dart';
 import '../bloc/auth_bloc.dart';
 import '../widgets/auth_header.dart';
 
@@ -40,6 +42,9 @@ class _RegisterViewState extends State<_RegisterView> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmController = TextEditingController();
+  bool _agreedToTerms = false;
+  bool _showBanner = false;
+  String? _bannerKey;
 
   @override
   void dispose() {
@@ -76,6 +81,10 @@ class _RegisterViewState extends State<_RegisterView> {
               context.goNamed(RouteNames.nHome);
             } else if (state.status == AuthStatus.failure &&
                 state.failureKey != null) {
+              setState(() {
+                _showBanner = true;
+                _bannerKey = state.failureKey;
+              });
               AppSnackbar.error(context, tr(context, state.failureKey!));
             }
           },
@@ -94,6 +103,11 @@ class _RegisterViewState extends State<_RegisterView> {
                       title: l10n.createAccount,
                       subtitle: l10n.registerSubtitle,
                     ),
+                    if (_showBanner && _bannerKey != null)
+                      AuthErrorBanner(
+                        failureKey: _bannerKey!,
+                        onDismiss: () => setState(() => _showBanner = false),
+                      ),
                     AppTextField(
                       controller: _nameController,
                       label: l10n.fullName,
@@ -142,15 +156,23 @@ class _RegisterViewState extends State<_RegisterView> {
                         return key == null ? null : tr(context, key);
                       },
                     ),
-                    SizedBox(height: AppSpacing.vXxl),
+                    SizedBox(height: AppSpacing.vLg),
+                    TermsCheckbox(
+                      value: _agreedToTerms,
+                      onChanged: (v) => setState(() => _agreedToTerms = v),
+                      onTermsTap: () =>
+                          context.pushNamed(RouteNames.nTermsPrivacy),
+                    ),
+                    SizedBox(height: AppSpacing.vXl),
                     AppButton(
                       label: l10n.register,
                       isLoading: state.isLoading,
-                      onPressed: _submit,
+                      onPressed: _agreedToTerms ? _submit : null,
                     ),
                     SizedBox(height: AppSpacing.vLg),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Text(l10n.alreadyHaveAccount,
                             style: context.textTheme.bodyMedium),

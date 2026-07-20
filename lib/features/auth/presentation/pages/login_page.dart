@@ -11,6 +11,7 @@ import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/input_validators.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text_field.dart';
+import '../../../../core/widgets/auth_error_banner.dart';
 import '../../../../core/widgets/custom_snackbar.dart';
 import '../bloc/auth_bloc.dart';
 import '../widgets/auth_header.dart';
@@ -39,6 +40,9 @@ class _LoginViewState extends State<_LoginView> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _rememberMe = false;
+  bool _showBanner = false;
+  String? _bannerKey;
 
   @override
   void dispose() {
@@ -70,6 +74,10 @@ class _LoginViewState extends State<_LoginView> {
               context.goNamed(RouteNames.nHome);
             } else if (state.status == AuthStatus.failure &&
                 state.failureKey != null) {
+              setState(() {
+                _showBanner = true;
+                _bannerKey = state.failureKey;
+              });
               AppSnackbar.error(context, tr(context, state.failureKey!));
             }
           },
@@ -89,6 +97,11 @@ class _LoginViewState extends State<_LoginView> {
                       title: l10n.welcomeBack,
                       subtitle: l10n.loginSubtitle,
                     ),
+                    if (_showBanner && _bannerKey != null)
+                      AuthErrorBanner(
+                        failureKey: _bannerKey!,
+                        onDismiss: () => setState(() => _showBanner = false),
+                      ),
                     AppTextField(
                       controller: _emailController,
                       label: l10n.email,
@@ -115,13 +128,43 @@ class _LoginViewState extends State<_LoginView> {
                         return key == null ? null : tr(context, key);
                       },
                     ),
-                    Align(
-                      alignment: AlignmentDirectional.centerEnd,
-                      child: TextButton(
-                        onPressed: () =>
-                            context.pushNamed(RouteNames.nForgotPassword),
-                        child: Text(l10n.forgotPassword),
-                      ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 24.w,
+                          height: 24.w,
+                          child: Checkbox(
+                            value: _rememberMe,
+                            onChanged: (v) =>
+                                setState(() => _rememberMe = v ?? false),
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                          ),
+                        ),
+                        SizedBox(width: AppSpacing.sm),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () =>
+                                setState(() => _rememberMe = !_rememberMe),
+                            child: Text(
+                              l10n.rememberMe,
+                              style: context.textTheme.bodyMedium,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: AppSpacing.sm),
+                        TextButton(
+                          onPressed: () =>
+                              context.pushNamed(RouteNames.nForgotPassword),
+                          child: Text(
+                            l10n.forgotPassword,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(height: AppSpacing.vSm),
                     AppButton(
@@ -134,8 +177,9 @@ class _LoginViewState extends State<_LoginView> {
                     SizedBox(height: AppSpacing.vXl),
                     const SocialLoginButtons(),
                     SizedBox(height: AppSpacing.vXxl),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Text(l10n.dontHaveAccount,
                             style: context.textTheme.bodyMedium),

@@ -17,6 +17,19 @@ abstract class AuthRepository {
 
   Future<Either<Failure, Unit>> forgotPassword({required String email});
 
+  /// Verifies the OTP for a password reset. Returns an opaque reset token on
+  /// success, used to authorise the subsequent password change.
+  Future<Either<Failure, String>> verifyOtp({
+    required String email,
+    required String code,
+  });
+
+  /// Sets a new password using a token obtained from [verifyOtp].
+  Future<Either<Failure, Unit>> resetPassword({
+    required String resetToken,
+    required String newPassword,
+  });
+
   Future<Either<Failure, UserEntity?>> getCachedUser();
 
   Future<Either<Failure, Unit>> logout();

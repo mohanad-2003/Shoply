@@ -103,6 +103,126 @@ class AppLocalizationsEn extends AppLocalizations {
   String get backToLogin => 'Back to Log In';
 
   @override
+  String get selectLanguage => 'Choose Your Language';
+
+  @override
+  String get selectLanguageSubtitle =>
+      'Select your preferred language to continue. You can change it later in settings.';
+
+  @override
+  String get continueLabel => 'Continue';
+
+  @override
+  String get welcomeTitle => 'Welcome to Shoply';
+
+  @override
+  String get welcomeTagline =>
+      'Shop smarter. Discover premium products and enjoy a seamless, delightful shopping experience.';
+
+  @override
+  String get continueAsGuest => 'Continue as Guest';
+
+  @override
+  String get otpTitle => 'Verification Code';
+
+  @override
+  String get otpSubtitle => 'Enter the 4-digit code we sent to';
+
+  @override
+  String get verify => 'Verify';
+
+  @override
+  String get didntReceiveCode => 'Didn\'t receive the code?';
+
+  @override
+  String get resendCode => 'Resend Code';
+
+  @override
+  String resendIn(String seconds) {
+    return 'Resend in $seconds';
+  }
+
+  @override
+  String get invalidOtp =>
+      'The code you entered is incorrect. Please try again.';
+
+  @override
+  String get resetPasswordTitle => 'Create New Password';
+
+  @override
+  String get resetPasswordSubtitle =>
+      'Your new password must be different from previously used passwords.';
+
+  @override
+  String get newPassword => 'New Password';
+
+  @override
+  String get confirmNewPassword => 'Confirm New Password';
+
+  @override
+  String get resetPassword => 'Reset Password';
+
+  @override
+  String get passwordStrength => 'Password strength';
+
+  @override
+  String get weak => 'Weak';
+
+  @override
+  String get medium => 'Medium';
+
+  @override
+  String get strong => 'Strong';
+
+  @override
+  String get passwordResetSuccessTitle => 'Password Reset';
+
+  @override
+  String get passwordResetSuccessBody =>
+      'Your password has been reset successfully. You can now log in with your new password.';
+
+  @override
+  String get agreeToTerms => 'I agree to the ';
+
+  @override
+  String get termsAndPrivacy => 'Terms & Privacy Policy';
+
+  @override
+  String get mustAcceptTerms =>
+      'Please accept the Terms & Privacy Policy to continue.';
+
+  @override
+  String get termsPrivacyTitle => 'Terms & Privacy';
+
+  @override
+  String get termsSectionUseTitle => '1. Use of Service';
+
+  @override
+  String get termsSectionUseBody =>
+      'By accessing or using Shoply, you agree to be bound by these terms. You are responsible for maintaining the confidentiality of your account and for all activity that occurs under it.';
+
+  @override
+  String get termsSectionPurchasesTitle => '2. Orders & Payments';
+
+  @override
+  String get termsSectionPurchasesBody =>
+      'All purchases are subject to product availability and price confirmation. We reserve the right to cancel any order in cases of suspected fraud or pricing errors.';
+
+  @override
+  String get termsSectionPrivacyTitle => '3. Privacy & Data';
+
+  @override
+  String get termsSectionPrivacyBody =>
+      'We collect only the information needed to provide and improve our services. Your personal data is never sold to third parties and is protected using industry-standard security measures.';
+
+  @override
+  String get termsSectionContactTitle => '4. Contact Us';
+
+  @override
+  String get termsSectionContactBody =>
+      'If you have any questions about these terms or how we handle your data, reach out to our support team at support@shoply.com.';
+
+  @override
   String get fieldRequired => 'This field is required';
 
   @override

@@ -17,6 +17,11 @@ abstract class AuthRemoteDataSource {
     required String password,
   });
   Future<void> forgotPassword({required String email});
+  Future<String> verifyOtp({required String email, required String code});
+  Future<void> resetPassword({
+    required String resetToken,
+    required String newPassword,
+  });
 }
 
 @LazySingleton(as: AuthRemoteDataSource)
@@ -71,6 +76,29 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     await Future<void>.delayed(AppConstants.mockDelay);
     if (email.trim().toLowerCase() == AppConstants.reservedFailEmail) {
       throw const ServerException('Unable to send reset link');
+    }
+  }
+
+  @override
+  Future<String> verifyOtp({
+    required String email,
+    required String code,
+  }) async {
+    await Future<void>.delayed(AppConstants.mockShortDelay);
+    if (code.trim() != AppConstants.reservedOtpCode) {
+      throw const ValidationException('The verification code is incorrect');
+    }
+    return 'reset-token-${DateTime.now().millisecondsSinceEpoch}';
+  }
+
+  @override
+  Future<void> resetPassword({
+    required String resetToken,
+    required String newPassword,
+  }) async {
+    await Future<void>.delayed(AppConstants.mockDelay);
+    if (resetToken.isEmpty) {
+      throw const ServerException('Reset session expired, please try again');
     }
   }
 

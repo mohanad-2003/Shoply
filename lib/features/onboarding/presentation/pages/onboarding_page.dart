@@ -42,7 +42,7 @@ class _OnboardingViewState extends State<_OnboardingView> {
 
   Future<void> _finish() async {
     await context.read<OnboardingCubit>().complete();
-    if (mounted) context.goNamed(RouteNames.nLogin);
+    if (mounted) context.goNamed(RouteNames.nWelcome);
   }
 
   void _next(OnboardingCubit cubit) {
@@ -84,7 +84,7 @@ class _OnboardingViewState extends State<_OnboardingView> {
                 itemBuilder: (_, i) => OnboardingSlide(page: pages[i]),
               ),
             ),
-            SizedBox(height: AppSpacing.vLg),
+            SizedBox(height: AppSpacing.vXl),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
