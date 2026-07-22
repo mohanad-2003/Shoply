@@ -9,6 +9,7 @@ import 'package:ui_kit/core/theme/app_colors.dart';
 import 'package:ui_kit/core/theme/app_radius.dart';
 import 'package:ui_kit/core/theme/app_spacing.dart';
 import 'package:ui_kit/core/widgets/app_button.dart';
+import 'package:ui_kit/core/widgets/staggered_reveal.dart';
 import 'package:ui_kit/features/auth/presentation/widgets/social_login_buttons.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -35,50 +36,77 @@ class WelcomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    _Hero(),
+                    StaggeredReveal(child: _Hero()),
                     SizedBox(height: AppSpacing.vXxxl),
-                    AppButton(
-                      label: l10n.createAccount,
-                      onPressed: () => context.pushNamed(RouteNames.nRegister),
-                    ),
-                    SizedBox(height: AppSpacing.vLg),
-                    AppButton(
-                      label: l10n.login,
-                      variant: AppButtonVariant.outline,
-                      onPressed: () => context.pushNamed(RouteNames.nLogin),
-                    ),
-                    SizedBox(height: AppSpacing.vXxl),
-                    _OrDivider(label: l10n.orContinueWith),
-                    SizedBox(height: AppSpacing.vXl),
-                    const SocialLoginButtons(),
-                    SizedBox(height: AppSpacing.vXl),
-                    Center(
-                      child: TextButton(
-                        onPressed: () => context.goNamed(RouteNames.nHome),
-                        child: Text(l10n.continueAsGuest),
-                      ),
-                    ),
-                    SizedBox(height: AppSpacing.vSm),
-                    Text.rich(
-                      TextSpan(
-                        style: context.textTheme.bodySmall,
+                    StaggeredReveal(
+                      delay: const Duration(milliseconds: 120),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          TextSpan(text: l10n.agreeToTerms),
-                          TextSpan(
-                            text: l10n.termsAndPrivacy,
-                            style: context.textTheme.bodySmall?.copyWith(
-                              color: context.colors.primary,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () =>
-                                  context.pushNamed(RouteNames.nTermsPrivacy),
+                          AppButton(
+                            label: l10n.createAccount,
+                            onPressed: () =>
+                                context.pushNamed(RouteNames.nRegister),
+                          ),
+                          SizedBox(height: AppSpacing.vLg),
+                          AppButton(
+                            label: l10n.login,
+                            variant: AppButtonVariant.outline,
+                            onPressed: () =>
+                                context.pushNamed(RouteNames.nLogin),
                           ),
                         ],
                       ),
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: AppSpacing.vXxl),
+                    StaggeredReveal(
+                      delay: const Duration(milliseconds: 220),
+                      child: Column(
+                        children: [
+                          _OrDivider(label: l10n.orContinueWith),
+                          SizedBox(height: AppSpacing.vXl),
+                          const SocialLoginButtons(),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: AppSpacing.vXl),
+                    StaggeredReveal(
+                      delay: const Duration(milliseconds: 300),
+                      child: Column(
+                        children: [
+                          Center(
+                            child: TextButton(
+                              onPressed: () =>
+                                  context.goNamed(RouteNames.nHome),
+                              child: Text(l10n.continueAsGuest),
+                            ),
+                          ),
+                          SizedBox(height: AppSpacing.vSm),
+                          Text.rich(
+                            TextSpan(
+                              style: context.textTheme.bodySmall,
+                              children: [
+                                TextSpan(text: l10n.agreeToTerms),
+                                TextSpan(
+                                  text: l10n.termsAndPrivacy,
+                                  style: context.textTheme.bodySmall
+                                      ?.copyWith(
+                                        color: context.colors.primary,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () => context.pushNamed(
+                                          RouteNames.nTermsPrivacy,
+                                        ),
+                                ),
+                              ],
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

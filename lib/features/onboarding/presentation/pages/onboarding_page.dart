@@ -33,9 +33,22 @@ class _OnboardingView extends StatefulWidget {
 
 class _OnboardingViewState extends State<_OnboardingView> {
   final _controller = PageController();
+  double _page = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    final page = _controller.page ?? 0;
+    if (page != _page) setState(() => _page = page);
+  }
 
   @override
   void dispose() {
+    _controller.removeListener(_onScroll);
     _controller.dispose();
     super.dispose();
   }
@@ -72,6 +85,16 @@ class _OnboardingViewState extends State<_OnboardingView> {
                 padding: EdgeInsets.only(right: AppSpacing.screenH, top: 8.h),
                 child: TextButton(
                   onPressed: _finish,
+                  style: TextButton.styleFrom(
+                    backgroundColor: context.colors.surfaceContainerHighest,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: AppRadius.rPill,
+                    ),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSpacing.lg,
+                      vertical: AppSpacing.vSm,
+                    ),
+                  ),
                   child: Text(context.l10n.skip),
                 ),
               ),
@@ -81,7 +104,10 @@ class _OnboardingViewState extends State<_OnboardingView> {
                 controller: _controller,
                 itemCount: pages.length,
                 onPageChanged: cubit.onPageChanged,
-                itemBuilder: (_, i) => OnboardingSlide(page: pages[i]),
+                itemBuilder: (_, i) => OnboardingSlide(
+                  page: pages[i],
+                  pageOffset: _page - i,
+                ),
               ),
             ),
             SizedBox(height: AppSpacing.vXl),
