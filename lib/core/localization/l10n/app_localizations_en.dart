@@ -407,6 +407,59 @@ class AppLocalizationsEn extends AppLocalizations {
   String get wishlist => 'Wishlist';
 
   @override
+  String get emptyWishlistTitle => 'Your wishlist is empty';
+
+  @override
+  String get emptyWishlistBody =>
+      'Save your favorite items here to buy them later.';
+
+  @override
+  String get browseProducts => 'Browse Products';
+
+  @override
+  String get removedFromWishlist => 'Removed from wishlist';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get preferences => 'Preferences';
+
+  @override
+  String get editProfile => 'Edit Profile';
+
+  @override
+  String get savedAddresses => 'Saved Addresses';
+
+  @override
+  String get paymentMethods => 'Payment Methods';
+
+  @override
+  String get security => 'Security';
+
+  @override
+  String get darkMode => 'Dark Mode';
+
+  @override
+  String get guest => 'Guest';
+
+  @override
+  String get guestPrompt => 'Sign in to sync your data';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get logoutConfirmTitle => 'Log Out?';
+
+  @override
+  String get logoutConfirmBody =>
+      'Are you sure you want to log out of your account?';
+
+  @override
   String get comingSoon => 'Coming Soon';
 
   @override

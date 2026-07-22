@@ -9,6 +9,7 @@ import '../../../../core/localization/l10n_lookup.dart';
 import '../../../../core/localization/locale_cubit.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/theme_cubit.dart';
+import '../../../../core/widgets/app_bottom_nav.dart';
 import '../../../../core/widgets/custom_snackbar.dart';
 import '../../../../core/widgets/error_state_widget.dart';
 import '../../../../core/widgets/shimmer_widgets.dart';
@@ -72,7 +73,7 @@ class _HomeView extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar: _BottomNav(),
+      bottomNavigationBar: const AppBottomNav(currentIndex: 0),
     );
   }
 }
@@ -213,41 +214,3 @@ class _HomeLoading extends StatelessWidget {
   }
 }
 
-class _BottomNav extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return NavigationBar(
-      selectedIndex: 0,
-      onDestinationSelected: (i) {
-        switch (i) {
-          case 1:
-            AppSnackbar.show(context, message: l10n.comingSoon);
-          case 2:
-            context.pushNamed(RouteNames.nCart);
-          case 3:
-            AppSnackbar.show(context, message: l10n.comingSoon);
-        }
-      },
-      destinations: [
-        NavigationDestination(
-          icon: const Icon(Icons.home_outlined),
-          selectedIcon: const Icon(Icons.home_rounded),
-          label: l10n.home,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.favorite_border_rounded),
-          label: l10n.wishlist,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.shopping_bag_outlined),
-          label: l10n.cart,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.person_outline_rounded),
-          label: l10n.settings,
-        ),
-      ],
-    );
-  }
-}

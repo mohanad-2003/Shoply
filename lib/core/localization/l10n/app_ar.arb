@@ -142,6 +142,25 @@
   "logout": "تسجيل الخروج",
 
   "wishlist": "المفضّلة",
+  "emptyWishlistTitle": "قائمة مفضّلتك فارغة",
+  "emptyWishlistBody": "احفظ العناصر المفضّلة لديك هنا لشرائها لاحقًا.",
+  "browseProducts": "تصفّح المنتجات",
+  "removedFromWishlist": "تمت الإزالة من المفضّلة",
+
+  "profile": "الملف الشخصي",
+  "account": "الحساب",
+  "preferences": "التفضيلات",
+  "editProfile": "تعديل الملف الشخصي",
+  "savedAddresses": "العناوين المحفوظة",
+  "paymentMethods": "طرق الدفع",
+  "security": "الأمان",
+  "darkMode": "الوضع الداكن",
+  "guest": "زائر",
+  "guestPrompt": "سجّل الدخول لمزامنة بياناتك",
+  "cancel": "إلغاء",
+  "logoutConfirmTitle": "تسجيل الخروج؟",
+  "logoutConfirmBody": "هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟",
+
   "comingSoon": "قريبًا",
   "comingSoonBody": "هذه الميزة في طريقها إليك. ترقّبها قريبًا!"
 }

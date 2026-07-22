@@ -143,6 +143,25 @@
   "logout": "Log Out",
 
   "wishlist": "Wishlist",
+  "emptyWishlistTitle": "Your wishlist is empty",
+  "emptyWishlistBody": "Save your favorite items here to buy them later.",
+  "browseProducts": "Browse Products",
+  "removedFromWishlist": "Removed from wishlist",
+
+  "profile": "Profile",
+  "account": "Account",
+  "preferences": "Preferences",
+  "editProfile": "Edit Profile",
+  "savedAddresses": "Saved Addresses",
+  "paymentMethods": "Payment Methods",
+  "security": "Security",
+  "darkMode": "Dark Mode",
+  "guest": "Guest",
+  "guestPrompt": "Sign in to sync your data",
+  "cancel": "Cancel",
+  "logoutConfirmTitle": "Log Out?",
+  "logoutConfirmBody": "Are you sure you want to log out of your account?",
+
   "comingSoon": "Coming Soon",
   "comingSoonBody": "This feature is on its way. Stay tuned!"
 }

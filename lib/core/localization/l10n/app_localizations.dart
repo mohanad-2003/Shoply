@@ -860,6 +860,108 @@ abstract class AppLocalizations {
   /// **'Wishlist'**
   String get wishlist;
 
+  /// No description provided for @emptyWishlistTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your wishlist is empty'**
+  String get emptyWishlistTitle;
+
+  /// No description provided for @emptyWishlistBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Save your favorite items here to buy them later.'**
+  String get emptyWishlistBody;
+
+  /// No description provided for @browseProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse Products'**
+  String get browseProducts;
+
+  /// No description provided for @removedFromWishlist.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from wishlist'**
+  String get removedFromWishlist;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @preferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get preferences;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfile;
+
+  /// No description provided for @savedAddresses.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Addresses'**
+  String get savedAddresses;
+
+  /// No description provided for @paymentMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Methods'**
+  String get paymentMethods;
+
+  /// No description provided for @security.
+  ///
+  /// In en, this message translates to:
+  /// **'Security'**
+  String get security;
+
+  /// No description provided for @darkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get darkMode;
+
+  /// No description provided for @guest.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest'**
+  String get guest;
+
+  /// No description provided for @guestPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to sync your data'**
+  String get guestPrompt;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @logoutConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out?'**
+  String get logoutConfirmTitle;
+
+  /// No description provided for @logoutConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out of your account?'**
+  String get logoutConfirmBody;
+
   /// No description provided for @comingSoon.
   ///
   /// In en, this message translates to:

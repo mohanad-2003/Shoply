@@ -16,7 +16,9 @@ import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/language_select/presentation/pages/language_select_page.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
 import '../../features/product/presentation/pages/product_details_page.dart';
+import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
+import '../../features/wishlist/presentation/pages/wishlist_page.dart';
 import '../di/injection.dart';
 import '../widgets/coming_soon_page.dart';
 import 'route_names.dart';
@@ -119,11 +121,20 @@ class AppRouter {
         pageBuilder: (_, state) => _slide(state, const CartPage()),
       ),
 
+      GoRoute(
+        path: RouteNames.wishlist,
+        name: RouteNames.nWishlist,
+        pageBuilder: (_, state) => _fade(state, const WishlistPage()),
+      ),
+      GoRoute(
+        path: RouteNames.profile,
+        name: RouteNames.nProfile,
+        pageBuilder: (_, state) => _fade(state, const ProfilePage()),
+      ),
+
       // Reserved routes — placeholder pages until later phases.
-      _reserved(RouteNames.wishlist, RouteNames.nWishlist),
       _reserved(RouteNames.checkout, RouteNames.nCheckout),
       _reserved(RouteNames.orders, RouteNames.nOrders),
-      _reserved(RouteNames.profile, RouteNames.nProfile),
       _reserved(RouteNames.notifications, RouteNames.nNotifications),
       _reserved(RouteNames.settings, RouteNames.nSettings),
       _reserved(RouteNames.search, RouteNames.nSearch),

@@ -406,6 +406,59 @@ class AppLocalizationsAr extends AppLocalizations {
   String get wishlist => 'المفضّلة';
 
   @override
+  String get emptyWishlistTitle => 'قائمة مفضّلتك فارغة';
+
+  @override
+  String get emptyWishlistBody =>
+      'احفظ العناصر المفضّلة لديك هنا لشرائها لاحقًا.';
+
+  @override
+  String get browseProducts => 'تصفّح المنتجات';
+
+  @override
+  String get removedFromWishlist => 'تمت الإزالة من المفضّلة';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
+  String get account => 'الحساب';
+
+  @override
+  String get preferences => 'التفضيلات';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get savedAddresses => 'العناوين المحفوظة';
+
+  @override
+  String get paymentMethods => 'طرق الدفع';
+
+  @override
+  String get security => 'الأمان';
+
+  @override
+  String get darkMode => 'الوضع الداكن';
+
+  @override
+  String get guest => 'زائر';
+
+  @override
+  String get guestPrompt => 'سجّل الدخول لمزامنة بياناتك';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get logoutConfirmTitle => 'تسجيل الخروج؟';
+
+  @override
+  String get logoutConfirmBody =>
+      'هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟';
+
+  @override
   String get comingSoon => 'قريبًا';
 
   @override

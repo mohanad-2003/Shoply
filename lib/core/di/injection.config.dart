@@ -84,7 +84,17 @@ import '../../features/product/domain/usecases/toggle_favorite_usecase.dart'
     as _i714;
 import '../../features/product/presentation/bloc/product_detail_bloc.dart'
     as _i1052;
+import '../../features/profile/presentation/cubit/profile_cubit.dart' as _i36;
 import '../../features/splash/presentation/cubit/splash_cubit.dart' as _i125;
+import '../../features/wishlist/data/repositories/wishlist_repository_impl.dart'
+    as _i919;
+import '../../features/wishlist/domain/repositories/wishlist_repository.dart'
+    as _i4;
+import '../../features/wishlist/domain/usecases/get_wishlist_products_usecase.dart'
+    as _i709;
+import '../../features/wishlist/domain/usecases/remove_from_wishlist_usecase.dart'
+    as _i120;
+import '../../features/wishlist/presentation/bloc/wishlist_bloc.dart' as _i86;
 import '../localization/locale_cubit.dart' as _i960;
 import '../network/dio_client.dart' as _i667;
 import '../network/interceptors/auth_interceptor.dart' as _i745;
@@ -199,6 +209,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i905.PromoDataSource>(),
       ),
     );
+    gh.lazySingleton<_i4.WishlistRepository>(
+      () => _i919.WishlistRepositoryImpl(gh<_i843.FavoritesRepository>()),
+    );
     gh.lazySingleton<_i39.ProductRepository>(
       () => _i1040.ProductRepositoryImpl(
         gh<_i963.ProductRemoteDataSource>(),
@@ -267,6 +280,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i843.FavoritesRepository>(),
       ),
     );
+    gh.factory<_i709.GetWishlistProductsUseCase>(
+      () => _i709.GetWishlistProductsUseCase(gh<_i4.WishlistRepository>()),
+    );
+    gh.factory<_i120.RemoveFromWishlistUseCase>(
+      () => _i120.RemoveFromWishlistUseCase(gh<_i4.WishlistRepository>()),
+    );
     gh.factory<_i797.AuthBloc>(
       () => _i797.AuthBloc(
         gh<_i188.LoginUseCase>(),
@@ -274,6 +293,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i560.ForgotPasswordUseCase>(),
         gh<_i503.VerifyOtpUseCase>(),
         gh<_i474.ResetPasswordUseCase>(),
+        gh<_i389.GetCachedUserUseCase>(),
+        gh<_i48.LogoutUseCase>(),
+      ),
+    );
+    gh.factory<_i36.ProfileCubit>(
+      () => _i36.ProfileCubit(
         gh<_i389.GetCachedUserUseCase>(),
         gh<_i48.LogoutUseCase>(),
       ),
@@ -293,6 +318,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i511.GetRelatedProductsUseCase>(),
         gh<_i714.ToggleFavoriteUseCase>(),
         gh<_i659.AddToCartUseCase>(),
+      ),
+    );
+    gh.factory<_i86.WishlistBloc>(
+      () => _i86.WishlistBloc(
+        gh<_i709.GetWishlistProductsUseCase>(),
+        gh<_i120.RemoveFromWishlistUseCase>(),
       ),
     );
     return this;

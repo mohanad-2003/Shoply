@@ -3,17 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/theme/app_spacing.dart';
-import '../../../../core/widgets/app_bar_widget.dart';
-import '../../../../core/widgets/app_button.dart';
-import '../../../../core/widgets/auth_error_banner.dart';
-import '../../../../core/widgets/custom_snackbar.dart';
-import '../../../../core/widgets/otp_input_field.dart';
-import '../bloc/auth_bloc.dart';
-import '../widgets/auth_header.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/routing/route_names.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
+import 'package:ui_kit/core/widgets/app_bar_widget.dart';
+import 'package:ui_kit/core/widgets/app_button.dart';
+import 'package:ui_kit/core/widgets/auth_error_banner.dart';
+import 'package:ui_kit/core/widgets/custom_snackbar.dart';
+import 'package:ui_kit/core/widgets/otp_input_field.dart';
+import 'package:ui_kit/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:ui_kit/features/auth/presentation/widgets/auth_header.dart';
 
 class OtpVerificationPage extends StatefulWidget {
   const OtpVerificationPage({super.key});
@@ -145,8 +144,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                       ),
                       _remaining > 0
                           ? Padding(
-                              padding:
-                                  EdgeInsets.only(left: AppSpacing.sm),
+                              padding: EdgeInsets.only(left: AppSpacing.sm),
                               child: Text(
                                 l10n.resendIn(_timerLabel),
                                 style: context.textTheme.labelMedium?.copyWith(
