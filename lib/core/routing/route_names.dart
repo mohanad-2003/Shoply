@@ -18,14 +18,20 @@ class RouteNames {
   static const String home = '/home';
   static const String product = '/product/:id';
   static const String cart = '/cart';
+  static const String catalog = '/catalog';
 
   static String productPath(String id) => '/product/$id';
 
-  // Reserved for later phases (placeholder "coming soon" pages).
   static const String wishlist = '/wishlist';
   static const String checkout = '/checkout';
-  static const String orders = '/orders';
   static const String profile = '/profile';
+  static const String editProfile = '/profile/edit';
+  static const String savedAddresses = '/profile/addresses';
+  static const String paymentMethods = '/profile/payment-methods';
+  static const String security = '/profile/security';
+
+  // Reserved for later phases (placeholder "coming soon" pages).
+  static const String orders = '/orders';
   static const String notifications = '/notifications';
   static const String settings = '/settings';
   static const String search = '/search';
@@ -45,10 +51,15 @@ class RouteNames {
   static const String nHome = 'home';
   static const String nProduct = 'product';
   static const String nCart = 'cart';
+  static const String nCatalog = 'catalog';
   static const String nWishlist = 'wishlist';
   static const String nCheckout = 'checkout';
   static const String nOrders = 'orders';
   static const String nProfile = 'profile';
+  static const String nEditProfile = 'editProfile';
+  static const String nSavedAddresses = 'savedAddresses';
+  static const String nPaymentMethods = 'paymentMethods';
+  static const String nSecurity = 'security';
   static const String nNotifications = 'notifications';
   static const String nSettings = 'settings';
   static const String nSearch = 'search';

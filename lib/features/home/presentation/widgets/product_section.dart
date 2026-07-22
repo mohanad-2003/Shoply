@@ -15,6 +15,7 @@ class ProductSection extends StatelessWidget {
     this.onSeeAll,
     required this.onProductTap,
     required this.onFavoriteToggle,
+    this.onAddToCart,
   });
 
   final String title;
@@ -22,6 +23,7 @@ class ProductSection extends StatelessWidget {
   final VoidCallback? onSeeAll;
   final void Function(ProductEntity) onProductTap;
   final void Function(ProductEntity) onFavoriteToggle;
+  final void Function(ProductEntity)? onAddToCart;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class ProductSection extends StatelessWidget {
         ),
         SizedBox(height: AppSpacing.vMd),
         SizedBox(
-          height: 240.h,
+          height: 280.h,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.symmetric(horizontal: AppSpacing.screenH),
@@ -48,15 +50,19 @@ class ProductSection extends StatelessWidget {
             itemBuilder: (_, i) {
               final p = products[i];
               return ProductCard(
-                width: 150.w,
+                width: 160.w,
                 imagePath: p.imagePath,
                 title: p.name,
+                brand: p.brand,
                 price: p.price,
                 originalPrice: p.originalPrice,
                 rating: p.rating,
+                reviewCount: p.reviewCount,
                 isFavorite: p.isFavorite,
                 onTap: () => onProductTap(p),
                 onFavoriteToggle: () => onFavoriteToggle(p),
+                onAddToCart:
+                    onAddToCart == null ? null : () => onAddToCart!(p),
               );
             },
           ),

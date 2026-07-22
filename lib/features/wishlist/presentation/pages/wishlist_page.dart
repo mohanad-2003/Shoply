@@ -96,9 +96,11 @@ class _WishlistGrid extends StatelessWidget {
         return ProductCard(
           imagePath: p.imagePath,
           title: p.name,
+          brand: p.brand,
           price: p.price,
           originalPrice: p.originalPrice,
           rating: p.rating,
+          reviewCount: p.reviewCount,
           isFavorite: true,
           onTap: () => openProduct(p),
           onFavoriteToggle: () =>

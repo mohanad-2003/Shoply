@@ -23,6 +23,10 @@ class CartItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
+    final variants =
+        [item.color, item.size].where((e) => e != null && e.isNotEmpty);
+
     return Dismissible(
       key: ValueKey(item.id),
       direction: DismissDirection.endToStart,
@@ -39,17 +43,18 @@ class CartItemTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(AppSpacing.md),
         decoration: BoxDecoration(
-          color: context.colors.surface,
+          color: colors.surface,
           borderRadius: AppRadius.rLg,
-          border: Border.all(color: context.colors.outlineVariant),
+          border: Border.all(color: colors.outlineVariant),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: 84.r,
-              height: 84.r,
+              width: 88.r,
+              height: 88.r,
               decoration: BoxDecoration(
-                color: context.colors.surfaceContainerHighest,
+                color: colors.surfaceContainerHighest,
                 borderRadius: AppRadius.rMd,
               ),
               clipBehavior: Clip.antiAlias,
@@ -65,23 +70,52 @@ class CartItemTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(item.name,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.textTheme.titleMedium),
-                  SizedBox(height: 2.h),
-                  Text(
-                    [item.color, item.size]
-                        .where((e) => e != null && e.isNotEmpty)
-                        .join(' · '),
-                    style: context.textTheme.bodySmall,
-                  ),
-                  SizedBox(height: AppSpacing.vSm),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(item.price.toPrice(),
-                          style: context.textTheme.titleMedium
-                              ?.copyWith(color: context.colors.primary)),
+                      Expanded(
+                        child: Text(
+                          item.name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.textTheme.titleSmall,
+                        ),
+                      ),
+                      _RemoveButton(onTap: onRemoved),
+                    ],
+                  ),
+                  if (variants.isNotEmpty) ...[
+                    SizedBox(height: AppSpacing.vSm),
+                    Wrap(
+                      spacing: AppSpacing.xs,
+                      children: [
+                        for (final v in variants) _VariantChip(label: v!),
+                      ],
+                    ),
+                  ],
+                  SizedBox(height: AppSpacing.vMd),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            item.lineTotal.toPrice(),
+                            style: context.textTheme.titleMedium?.copyWith(
+                              color: colors.primary,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          if (item.quantity > 1)
+                            Text(
+                              '${item.price.toPrice()} ${context.l10n.each}',
+                              style: context.textTheme.labelSmall?.copyWith(
+                                color: colors.onSurfaceVariant,
+                              ),
+                            ),
+                        ],
+                      ),
                       const Spacer(),
                       QuantitySelector(
                         quantity: item.quantity,
@@ -94,6 +128,52 @@ class CartItemTile extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RemoveButton extends StatelessWidget {
+  const _RemoveButton({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: AppRadius.rPill,
+      child: Padding(
+        padding: EdgeInsets.all(4.r),
+        child: Icon(
+          Icons.close_rounded,
+          size: 18.r,
+          color: context.colors.onSurfaceVariant,
+        ),
+      ),
+    );
+  }
+}
+
+class _VariantChip extends StatelessWidget {
+  const _VariantChip({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: 3.h),
+      decoration: BoxDecoration(
+        color: colors.surfaceContainerHighest,
+        borderRadius: AppRadius.rSm,
+      ),
+      child: Text(
+        label,
+        style: context.textTheme.labelSmall?.copyWith(
+          color: colors.onSurfaceVariant,
         ),
       ),
     );

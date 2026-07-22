@@ -26,6 +26,24 @@ and responsive layouts.
 
 ---
 
+## 📸 Screenshots
+
+> Drop your captured screens into the [`screenshots/`](screenshots/) folder using the file
+> names below and they will render automatically.
+
+| Onboarding | Login | Home |
+|:---:|:---:|:---:|
+| <img src="screenshots/onboarding.png" width="220"/> | <img src="screenshots/login.png" width="220"/> | <img src="screenshots/home.png" width="220"/> |
+
+| Product Details | Cart | Wishlist |
+|:---:|:---:|:---:|
+| <img src="screenshots/product.png" width="220"/> | <img src="screenshots/cart.png" width="220"/> | <img src="screenshots/wishlist.png" width="220"/> |
+
+<sub>To capture a screen while the app runs on an emulator:
+`flutter screenshot --out=screenshots/home.png`</sub>
+
+---
+
 ## ✨ Features
 
 | Area | Highlights |

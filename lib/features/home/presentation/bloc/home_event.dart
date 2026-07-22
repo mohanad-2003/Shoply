@@ -23,3 +23,12 @@ class HomeFavoriteToggled extends HomeEvent {
   @override
   List<Object?> get props => [productId];
 }
+
+class HomeAddToCartRequested extends HomeEvent {
+  const HomeAddToCartRequested(this.product);
+
+  final ProductEntity product;
+
+  @override
+  List<Object?> get props => [product];
+}

@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/usecases/usecase.dart';
+import '../../../cart/domain/entities/cart_item_entity.dart';
+import '../../../cart/domain/usecases/add_to_cart_usecase.dart';
 import '../../../product/domain/usecases/toggle_favorite_usecase.dart';
 import '../../domain/entities/home_data_entity.dart';
+import '../../domain/entities/product_entity.dart';
 import '../../domain/usecases/get_home_data_usecase.dart';
 
 part 'home_event.dart';
@@ -12,15 +15,32 @@ part 'home_state.dart';
 
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc(this._getHomeData, this._toggleFavorite)
+  HomeBloc(this._getHomeData, this._toggleFavorite, this._addToCart)
       : super(const HomeState()) {
     on<HomeStarted>(_onStarted);
     on<HomeRefreshed>(_onRefreshed);
     on<HomeFavoriteToggled>(_onFavoriteToggled);
+    on<HomeAddToCartRequested>(_onAddToCart);
   }
 
   final GetHomeDataUseCase _getHomeData;
   final ToggleFavoriteUseCase _toggleFavorite;
+  final AddToCartUseCase _addToCart;
+
+  Future<void> _onAddToCart(
+    HomeAddToCartRequested event,
+    Emitter<HomeState> emit,
+  ) async {
+    final p = event.product;
+    await _addToCart(CartItemEntity(
+      id: p.id,
+      productId: p.id,
+      name: p.name,
+      imagePath: p.imagePath,
+      price: p.price,
+      quantity: 1,
+    ));
+  }
 
   Future<void> _load(Emitter<HomeState> emit, {required bool showLoader}) async {
     if (showLoader) emit(state.copyWith(status: HomeStatus.loading));

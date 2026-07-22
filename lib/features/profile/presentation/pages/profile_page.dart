@@ -14,7 +14,6 @@ import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/app_bottom_nav.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/custom_bottom_sheet.dart';
-import '../../../../core/widgets/custom_snackbar.dart';
 import '../../../../core/widgets/settings_tile.dart';
 import '../../../auth/domain/entities/user_entity.dart';
 import '../cubit/profile_cubit.dart';
@@ -66,8 +65,14 @@ class _ProfileContent extends StatelessWidget {
 
   final UserEntity? user;
 
-  void _stub(BuildContext context) =>
-      AppSnackbar.show(context, message: context.l10n.comingSoon);
+  Future<void> _openEditProfile(BuildContext context) async {
+    final cubit = context.read<ProfileCubit>();
+    final changed = await context.pushNamed<bool>(
+      RouteNames.nEditProfile,
+      extra: user,
+    );
+    if (changed == true) cubit.loadUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,22 +92,22 @@ class _ProfileContent extends StatelessWidget {
             SettingsTile(
               icon: Icons.person_outline_rounded,
               title: l10n.editProfile,
-              onTap: () => _stub(context),
+              onTap: () => _openEditProfile(context),
             ),
             SettingsTile(
               icon: Icons.location_on_outlined,
               title: l10n.savedAddresses,
-              onTap: () => _stub(context),
+              onTap: () => context.pushNamed(RouteNames.nSavedAddresses),
             ),
             SettingsTile(
               icon: Icons.credit_card_rounded,
               title: l10n.paymentMethods,
-              onTap: () => _stub(context),
+              onTap: () => context.pushNamed(RouteNames.nPaymentMethods),
             ),
             SettingsTile(
               icon: Icons.shield_outlined,
               title: l10n.security,
-              onTap: () => _stub(context),
+              onTap: () => context.pushNamed(RouteNames.nSecurity),
             ),
           ],
         ),

@@ -19,7 +19,7 @@ class RelatedProductsList extends StatelessWidget {
   Widget build(BuildContext context) {
     if (products.isEmpty) return const SizedBox.shrink();
     return SizedBox(
-      height: 230.h,
+      height: 280.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: products.length,
@@ -27,12 +27,14 @@ class RelatedProductsList extends StatelessWidget {
         itemBuilder: (_, i) {
           final p = products[i];
           return ProductCard(
-            width: 150.w,
+            width: 160.w,
             imagePath: p.imagePath,
             title: p.name,
+            brand: p.brand,
             price: p.price,
             originalPrice: p.originalPrice,
             rating: p.rating,
+            reviewCount: p.reviewCount,
             isFavorite: p.isFavorite,
             onTap: () => onTap(p),
           );

@@ -34,6 +34,8 @@ import '../../features/auth/domain/usecases/logout_usecase.dart' as _i48;
 import '../../features/auth/domain/usecases/register_usecase.dart' as _i941;
 import '../../features/auth/domain/usecases/reset_password_usecase.dart'
     as _i474;
+import '../../features/auth/domain/usecases/update_profile_usecase.dart'
+    as _i798;
 import '../../features/auth/domain/usecases/verify_otp_usecase.dart' as _i503;
 import '../../features/auth/presentation/bloc/auth_bloc.dart' as _i797;
 import '../../features/cart/data/datasources/cart_local_datasource.dart'
@@ -50,6 +52,17 @@ import '../../features/cart/domain/usecases/remove_from_cart_usecase.dart'
 import '../../features/cart/domain/usecases/update_quantity_usecase.dart'
     as _i107;
 import '../../features/cart/presentation/bloc/cart_bloc.dart' as _i517;
+import '../../features/catalog/data/datasources/catalog_remote_datasource.dart'
+    as _i248;
+import '../../features/catalog/data/repositories/catalog_repository_impl.dart'
+    as _i428;
+import '../../features/catalog/domain/repositories/catalog_repository.dart'
+    as _i1018;
+import '../../features/catalog/domain/usecases/get_catalog_products_usecase.dart'
+    as _i296;
+import '../../features/catalog/presentation/cubit/catalog_cubit.dart' as _i686;
+import '../../features/checkout/presentation/cubit/checkout_cubit.dart'
+    as _i645;
 import '../../features/home/data/datasources/home_remote_datasource.dart'
     as _i278;
 import '../../features/home/data/repositories/home_repository_impl.dart'
@@ -84,6 +97,8 @@ import '../../features/product/domain/usecases/toggle_favorite_usecase.dart'
     as _i714;
 import '../../features/product/presentation/bloc/product_detail_bloc.dart'
     as _i1052;
+import '../../features/profile/presentation/cubit/edit_profile_cubit.dart'
+    as _i990;
 import '../../features/profile/presentation/cubit/profile_cubit.dart' as _i36;
 import '../../features/splash/presentation/cubit/splash_cubit.dart' as _i125;
 import '../../features/wishlist/data/repositories/wishlist_repository_impl.dart'
@@ -151,6 +166,9 @@ extension GetItInjectableX on _i174.GetIt {
       instanceName: 'cart_box',
       preResolve: true,
     );
+    gh.lazySingleton<_i248.CatalogRemoteDataSource>(
+      () => _i248.CatalogRemoteDataSourceImpl(),
+    );
     gh.lazySingleton<_i932.NetworkInfo>(
       () => _i932.NetworkInfoImpl(gh<_i161.InternetConnection>()),
     );
@@ -162,6 +180,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i611.ThemeCubit>(
       () => _i611.ThemeCubit(gh<_i460.SharedPreferences>()),
+    );
+    gh.lazySingleton<_i1018.CatalogRepository>(
+      () => _i428.CatalogRepositoryImpl(gh<_i248.CatalogRemoteDataSource>()),
     );
     gh.lazySingleton<_i992.AuthLocalDataSource>(
       () => _i992.AuthLocalDataSourceImpl(
@@ -179,6 +200,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i460.SharedPreferences>(),
         gh<_i979.Box<dynamic>>(instanceName: 'user_box'),
       ),
+    );
+    gh.factory<_i296.GetCatalogProductsUseCase>(
+      () => _i296.GetCatalogProductsUseCase(gh<_i1018.CatalogRepository>()),
     );
     gh.lazySingleton<_i361.Dio>(
       () => registerModule.dio(gh<_i667.DioClient>()),
@@ -263,6 +287,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i474.ResetPasswordUseCase>(
       () => _i474.ResetPasswordUseCase(gh<_i787.AuthRepository>()),
     );
+    gh.factory<_i798.UpdateProfileUseCase>(
+      () => _i798.UpdateProfileUseCase(gh<_i787.AuthRepository>()),
+    );
     gh.factory<_i503.VerifyOtpUseCase>(
       () => _i503.VerifyOtpUseCase(gh<_i787.AuthRepository>()),
     );
@@ -278,6 +305,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i76.HomeRepositoryImpl(
         gh<_i278.HomeRemoteDataSource>(),
         gh<_i843.FavoritesRepository>(),
+      ),
+    );
+    gh.factory<_i645.CheckoutCubit>(
+      () => _i645.CheckoutCubit(
+        gh<_i179.GetCartUseCase>(),
+        gh<_i355.RemoveFromCartUseCase>(),
       ),
     );
     gh.factory<_i709.GetWishlistProductsUseCase>(
@@ -303,19 +336,31 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i48.LogoutUseCase>(),
       ),
     );
+    gh.factory<_i686.CatalogCubit>(
+      () => _i686.CatalogCubit(
+        gh<_i296.GetCatalogProductsUseCase>(),
+        gh<_i946.GetFavoriteIdsUseCase>(),
+        gh<_i714.ToggleFavoriteUseCase>(),
+        gh<_i659.AddToCartUseCase>(),
+      ),
+    );
     gh.factory<_i1033.GetHomeDataUseCase>(
       () => _i1033.GetHomeDataUseCase(gh<_i0.HomeRepository>()),
     );
-    gh.factory<_i202.HomeBloc>(
-      () => _i202.HomeBloc(
-        gh<_i1033.GetHomeDataUseCase>(),
-        gh<_i714.ToggleFavoriteUseCase>(),
-      ),
+    gh.factory<_i990.EditProfileCubit>(
+      () => _i990.EditProfileCubit(gh<_i798.UpdateProfileUseCase>()),
     );
     gh.factory<_i1052.ProductDetailBloc>(
       () => _i1052.ProductDetailBloc(
         gh<_i133.GetProductDetailsUseCase>(),
         gh<_i511.GetRelatedProductsUseCase>(),
+        gh<_i714.ToggleFavoriteUseCase>(),
+        gh<_i659.AddToCartUseCase>(),
+      ),
+    );
+    gh.factory<_i202.HomeBloc>(
+      () => _i202.HomeBloc(
+        gh<_i1033.GetHomeDataUseCase>(),
         gh<_i714.ToggleFavoriteUseCase>(),
         gh<_i659.AddToCartUseCase>(),
       ),

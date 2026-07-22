@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/routing/route_names.dart';
 import '../../../../core/theme/app_radius.dart';
-import '../../../../core/widgets/custom_snackbar.dart';
 
-/// Non-editable search field. `/search` is reserved for a later phase, so this
-/// surfaces a "coming soon" hint for now.
+/// Tapping opens the full search screen.
 class SearchBarEntry extends StatelessWidget {
   const SearchBarEntry({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AppSnackbar.show(context, message: context.l10n.comingSoon),
+      onTap: () => context.pushNamed(RouteNames.nSearch),
       child: Container(
         height: 52.h,
         padding: EdgeInsets.symmetric(horizontal: 16.w),

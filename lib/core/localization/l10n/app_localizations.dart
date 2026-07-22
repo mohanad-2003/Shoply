@@ -584,6 +584,42 @@ abstract class AppLocalizations {
   /// **'Ends in'**
   String get endsIn;
 
+  /// No description provided for @popularSearches.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular searches'**
+  String get popularSearches;
+
+  /// No description provided for @noProductsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No products yet'**
+  String get noProductsTitle;
+
+  /// No description provided for @noProductsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no products in this category right now.'**
+  String get noProductsBody;
+
+  /// No description provided for @noResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No results found'**
+  String get noResultsTitle;
+
+  /// No description provided for @noResultsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find anything for \"{query}\". Try a different keyword.'**
+  String noResultsBody(String query);
+
+  /// No description provided for @resultsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 result} other{{count} results}}'**
+  String resultsCount(int count);
+
   /// No description provided for @productDetails.
   ///
   /// In en, this message translates to:
@@ -757,6 +793,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Item removed from cart'**
   String get itemRemoved;
+
+  /// No description provided for @each.
+  ///
+  /// In en, this message translates to:
+  /// **'each'**
+  String get each;
+
+  /// No description provided for @secureCheckout.
+  ///
+  /// In en, this message translates to:
+  /// **'Secure checkout'**
+  String get secureCheckout;
+
+  /// No description provided for @freeShippingUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve unlocked free shipping!'**
+  String get freeShippingUnlocked;
+
+  /// No description provided for @addForFreeShipping.
+  ///
+  /// In en, this message translates to:
+  /// **'Add {amount} more for free shipping'**
+  String addForFreeShipping(String amount);
+
+  /// No description provided for @cartItemsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No items} =1{1 item} other{{count} items}}'**
+  String cartItemsCount(int count);
 
   /// No description provided for @retry.
   ///
@@ -961,6 +1027,318 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Are you sure you want to log out of your account?'**
   String get logoutConfirmBody;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @saveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get saveChanges;
+
+  /// No description provided for @profileUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated successfully'**
+  String get profileUpdated;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @defaultLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get defaultLabel;
+
+  /// No description provided for @setAsDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Set as default'**
+  String get setAsDefault;
+
+  /// No description provided for @addNewAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Address'**
+  String get addNewAddress;
+
+  /// No description provided for @addressAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Address added'**
+  String get addressAdded;
+
+  /// No description provided for @saveAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Address'**
+  String get saveAddress;
+
+  /// No description provided for @addressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Label'**
+  String get addressLabel;
+
+  /// No description provided for @addressLabelHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Home, Work, ...'**
+  String get addressLabelHint;
+
+  /// No description provided for @recipientName.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipient Name'**
+  String get recipientName;
+
+  /// No description provided for @streetAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Street Address'**
+  String get streetAddress;
+
+  /// No description provided for @cityRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'City / Region'**
+  String get cityRegion;
+
+  /// No description provided for @noAddressesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved addresses'**
+  String get noAddressesTitle;
+
+  /// No description provided for @noAddressesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a shipping address to speed up checkout.'**
+  String get noAddressesBody;
+
+  /// No description provided for @addCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Card'**
+  String get addCard;
+
+  /// No description provided for @cardAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Card added'**
+  String get cardAdded;
+
+  /// No description provided for @saveCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Card'**
+  String get saveCard;
+
+  /// No description provided for @cardNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Card Number'**
+  String get cardNumber;
+
+  /// No description provided for @cardHolder.
+  ///
+  /// In en, this message translates to:
+  /// **'Cardholder Name'**
+  String get cardHolder;
+
+  /// No description provided for @expiryDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Expiry Date'**
+  String get expiryDate;
+
+  /// No description provided for @expires.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires'**
+  String get expires;
+
+  /// No description provided for @noPaymentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No payment methods'**
+  String get noPaymentTitle;
+
+  /// No description provided for @noPaymentBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a card to check out faster and more securely.'**
+  String get noPaymentBody;
+
+  /// No description provided for @signInSecurity.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign-in & Security'**
+  String get signInSecurity;
+
+  /// No description provided for @changePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get changePassword;
+
+  /// No description provided for @currentPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Password'**
+  String get currentPassword;
+
+  /// No description provided for @updatePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Password'**
+  String get updatePassword;
+
+  /// No description provided for @passwordChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Password changed successfully'**
+  String get passwordChanged;
+
+  /// No description provided for @biometricLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Biometric Login'**
+  String get biometricLogin;
+
+  /// No description provided for @biometricLoginSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Use fingerprint or face to sign in'**
+  String get biometricLoginSub;
+
+  /// No description provided for @twoFactorAuth.
+  ///
+  /// In en, this message translates to:
+  /// **'Two-Factor Authentication'**
+  String get twoFactorAuth;
+
+  /// No description provided for @twoFactorAuthSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an extra layer of security'**
+  String get twoFactorAuthSub;
+
+  /// No description provided for @alerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Alerts'**
+  String get alerts;
+
+  /// No description provided for @loginAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Alerts'**
+  String get loginAlerts;
+
+  /// No description provided for @loginAlertsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Get notified of new sign-ins'**
+  String get loginAlertsSub;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Account'**
+  String get deleteAccount;
+
+  /// No description provided for @deleteAccountConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Account?'**
+  String get deleteAccountConfirmTitle;
+
+  /// No description provided for @deleteAccountConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This will permanently remove your account and all data. This action cannot be undone.'**
+  String get deleteAccountConfirmBody;
+
+  /// No description provided for @checkoutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkout'**
+  String get checkoutTitle;
+
+  /// No description provided for @shippingAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Shipping Address'**
+  String get shippingAddress;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
+  /// No description provided for @paymentMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Method'**
+  String get paymentMethod;
+
+  /// No description provided for @orderSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Summary'**
+  String get orderSummary;
+
+  /// No description provided for @estimatedDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated delivery'**
+  String get estimatedDelivery;
+
+  /// No description provided for @deliveryWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'3–5 business days'**
+  String get deliveryWindow;
+
+  /// No description provided for @placeOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Place Order'**
+  String get placeOrder;
+
+  /// No description provided for @orderPlacedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Placed!'**
+  String get orderPlacedTitle;
+
+  /// No description provided for @orderPlacedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for your purchase. Your order is confirmed and will be on its way to you shortly.'**
+  String get orderPlacedBody;
+
+  /// No description provided for @orderNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Number'**
+  String get orderNumber;
+
+  /// No description provided for @continueShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Shopping'**
+  String get continueShopping;
 
   /// No description provided for @comingSoon.
   ///

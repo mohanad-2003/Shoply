@@ -32,5 +32,13 @@ abstract class AuthRepository {
 
   Future<Either<Failure, UserEntity?>> getCachedUser();
 
+  /// Updates the cached user's editable profile fields and returns the merged
+  /// user.
+  Future<Either<Failure, UserEntity>> updateProfile({
+    required String name,
+    required String email,
+    String? phone,
+  });
+
   Future<Either<Failure, Unit>> logout();
 }

@@ -268,6 +268,36 @@ class AppLocalizationsAr extends AppLocalizations {
   String get endsIn => 'ينتهي خلال';
 
   @override
+  String get popularSearches => 'عمليات البحث الشائعة';
+
+  @override
+  String get noProductsTitle => 'لا توجد منتجات بعد';
+
+  @override
+  String get noProductsBody => 'لا توجد منتجات في هذه الفئة حاليًا.';
+
+  @override
+  String get noResultsTitle => 'لا توجد نتائج';
+
+  @override
+  String noResultsBody(String query) {
+    return 'لم نتمكّن من العثور على أي شيء لـ \"$query\". جرّب كلمة أخرى.';
+  }
+
+  @override
+  String resultsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count نتيجة',
+      few: '$count نتائج',
+      two: 'نتيجتان',
+      one: 'نتيجة واحدة',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get productDetails => 'تفاصيل المنتج';
 
   @override
@@ -353,6 +383,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get itemRemoved => 'تمت إزالة العنصر من السلة';
+
+  @override
+  String get each => 'للقطعة';
+
+  @override
+  String get secureCheckout => 'دفع آمن';
+
+  @override
+  String get freeShippingUnlocked => 'لقد حصلت على شحن مجاني!';
+
+  @override
+  String addForFreeShipping(String amount) {
+    return 'أضِف $amount للحصول على شحن مجاني';
+  }
+
+  @override
+  String cartItemsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count عنصرًا',
+      few: '$count عناصر',
+      two: 'عنصران',
+      one: 'عنصر واحد',
+      zero: 'لا عناصر',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get retry => 'إعادة المحاولة';
@@ -457,6 +515,165 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get logoutConfirmBody =>
       'هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟';
+
+  @override
+  String get phoneNumber => 'رقم الهاتف';
+
+  @override
+  String get saveChanges => 'حفظ التغييرات';
+
+  @override
+  String get profileUpdated => 'تم تحديث الملف الشخصي بنجاح';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get defaultLabel => 'افتراضي';
+
+  @override
+  String get setAsDefault => 'تعيين كافتراضي';
+
+  @override
+  String get addNewAddress => 'إضافة عنوان جديد';
+
+  @override
+  String get addressAdded => 'تمت إضافة العنوان';
+
+  @override
+  String get saveAddress => 'حفظ العنوان';
+
+  @override
+  String get addressLabel => 'التسمية';
+
+  @override
+  String get addressLabelHint => 'المنزل، العمل، ...';
+
+  @override
+  String get recipientName => 'اسم المستلم';
+
+  @override
+  String get streetAddress => 'عنوان الشارع';
+
+  @override
+  String get cityRegion => 'المدينة / المنطقة';
+
+  @override
+  String get noAddressesTitle => 'لا توجد عناوين محفوظة';
+
+  @override
+  String get noAddressesBody => 'أضِف عنوان شحن لتسريع عملية الدفع.';
+
+  @override
+  String get addCard => 'إضافة بطاقة';
+
+  @override
+  String get cardAdded => 'تمت إضافة البطاقة';
+
+  @override
+  String get saveCard => 'حفظ البطاقة';
+
+  @override
+  String get cardNumber => 'رقم البطاقة';
+
+  @override
+  String get cardHolder => 'اسم حامل البطاقة';
+
+  @override
+  String get expiryDate => 'تاريخ الانتهاء';
+
+  @override
+  String get expires => 'تنتهي في';
+
+  @override
+  String get noPaymentTitle => 'لا توجد طرق دفع';
+
+  @override
+  String get noPaymentBody =>
+      'أضِف بطاقة لإتمام الشراء بشكل أسرع وأكثر أمانًا.';
+
+  @override
+  String get signInSecurity => 'تسجيل الدخول والأمان';
+
+  @override
+  String get changePassword => 'تغيير كلمة المرور';
+
+  @override
+  String get currentPassword => 'كلمة المرور الحالية';
+
+  @override
+  String get updatePassword => 'تحديث كلمة المرور';
+
+  @override
+  String get passwordChanged => 'تم تغيير كلمة المرور بنجاح';
+
+  @override
+  String get biometricLogin => 'تسجيل الدخول بالبصمة';
+
+  @override
+  String get biometricLoginSub => 'استخدم البصمة أو الوجه لتسجيل الدخول';
+
+  @override
+  String get twoFactorAuth => 'المصادقة الثنائية';
+
+  @override
+  String get twoFactorAuthSub => 'أضِف طبقة أمان إضافية';
+
+  @override
+  String get alerts => 'التنبيهات';
+
+  @override
+  String get loginAlerts => 'تنبيهات تسجيل الدخول';
+
+  @override
+  String get loginAlertsSub => 'احصل على إشعار بعمليات الدخول الجديدة';
+
+  @override
+  String get deleteAccount => 'حذف الحساب';
+
+  @override
+  String get deleteAccountConfirmTitle => 'حذف الحساب؟';
+
+  @override
+  String get deleteAccountConfirmBody =>
+      'سيؤدي هذا إلى إزالة حسابك وجميع بياناتك نهائيًا. لا يمكن التراجع عن هذا الإجراء.';
+
+  @override
+  String get checkoutTitle => 'إتمام الشراء';
+
+  @override
+  String get shippingAddress => 'عنوان الشحن';
+
+  @override
+  String get change => 'تغيير';
+
+  @override
+  String get paymentMethod => 'طريقة الدفع';
+
+  @override
+  String get orderSummary => 'ملخّص الطلب';
+
+  @override
+  String get estimatedDelivery => 'التوصيل المتوقّع';
+
+  @override
+  String get deliveryWindow => '3–5 أيام عمل';
+
+  @override
+  String get placeOrder => 'تأكيد الطلب';
+
+  @override
+  String get orderPlacedTitle => 'تم تأكيد الطلب!';
+
+  @override
+  String get orderPlacedBody =>
+      'شكرًا لشرائك. تم تأكيد طلبك وسيكون في طريقه إليك قريبًا.';
+
+  @override
+  String get orderNumber => 'رقم الطلب';
+
+  @override
+  String get continueShopping => 'مواصلة التسوّق';
 
   @override
   String get comingSoon => 'قريبًا';

@@ -2,15 +2,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../core/constants/asset_paths.dart';
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_radius.dart';
-import '../../../../core/theme/app_spacing.dart';
-import '../../../../core/widgets/app_button.dart';
-import '../widgets/social_login_buttons.dart';
+import 'package:ui_kit/core/constants/asset_paths.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/routing/route_names.dart';
+import 'package:ui_kit/core/theme/app_colors.dart';
+import 'package:ui_kit/core/theme/app_radius.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
+import 'package:ui_kit/core/widgets/app_button.dart';
+import 'package:ui_kit/features/auth/presentation/widgets/social_login_buttons.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -33,59 +32,58 @@ class WelcomePage extends StatelessWidget {
                       constraints.maxHeight - AppSpacing.vXl - AppSpacing.vXl,
                 ),
                 child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _Hero(),
-                      SizedBox(height: AppSpacing.vXxxl),
-                      AppButton(
-                        label: l10n.createAccount,
-                        onPressed: () =>
-                            context.pushNamed(RouteNames.nRegister),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _Hero(),
+                    SizedBox(height: AppSpacing.vXxxl),
+                    AppButton(
+                      label: l10n.createAccount,
+                      onPressed: () => context.pushNamed(RouteNames.nRegister),
+                    ),
+                    SizedBox(height: AppSpacing.vLg),
+                    AppButton(
+                      label: l10n.login,
+                      variant: AppButtonVariant.outline,
+                      onPressed: () => context.pushNamed(RouteNames.nLogin),
+                    ),
+                    SizedBox(height: AppSpacing.vXxl),
+                    _OrDivider(label: l10n.orContinueWith),
+                    SizedBox(height: AppSpacing.vXl),
+                    const SocialLoginButtons(),
+                    SizedBox(height: AppSpacing.vXl),
+                    Center(
+                      child: TextButton(
+                        onPressed: () => context.goNamed(RouteNames.nHome),
+                        child: Text(l10n.continueAsGuest),
                       ),
-                      SizedBox(height: AppSpacing.vLg),
-                      AppButton(
-                        label: l10n.login,
-                        variant: AppButtonVariant.outline,
-                        onPressed: () => context.pushNamed(RouteNames.nLogin),
-                      ),
-                      SizedBox(height: AppSpacing.vXxl),
-                      _OrDivider(label: l10n.orContinueWith),
-                      SizedBox(height: AppSpacing.vXl),
-                      const SocialLoginButtons(),
-                      SizedBox(height: AppSpacing.vXl),
-                      Center(
-                        child: TextButton(
-                          onPressed: () => context.goNamed(RouteNames.nHome),
-                          child: Text(l10n.continueAsGuest),
-                        ),
-                      ),
-                      SizedBox(height: AppSpacing.vSm),
-                      Text.rich(
-                        TextSpan(
-                          style: context.textTheme.bodySmall,
-                          children: [
-                            TextSpan(text: l10n.agreeToTerms),
-                            TextSpan(
-                              text: l10n.termsAndPrivacy,
-                              style: context.textTheme.bodySmall?.copyWith(
-                                color: context.colors.primary,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () =>
-                                    context.pushNamed(RouteNames.nTermsPrivacy),
+                    ),
+                    SizedBox(height: AppSpacing.vSm),
+                    Text.rich(
+                      TextSpan(
+                        style: context.textTheme.bodySmall,
+                        children: [
+                          TextSpan(text: l10n.agreeToTerms),
+                          TextSpan(
+                            text: l10n.termsAndPrivacy,
+                            style: context.textTheme.bodySmall?.copyWith(
+                              color: context.colors.primary,
+                              fontWeight: FontWeight.w600,
                             ),
-                          ],
-                        ),
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () =>
+                                  context.pushNamed(RouteNames.nTermsPrivacy),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
-              );
+              ),
+            );
           },
         ),
       ),
@@ -105,10 +103,7 @@ class _Hero extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [
-                AppColors.seed,
-                AppColors.seed.withValues(alpha: 0.7),
-              ],
+              colors: [AppColors.seed, AppColors.seed.withValues(alpha: 0.7)],
             ),
             borderRadius: AppRadius.rXxl,
             boxShadow: [

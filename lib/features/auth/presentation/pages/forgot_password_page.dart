@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/localization/l10n_lookup.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/theme/app_spacing.dart';
-import '../../../../core/utils/input_validators.dart';
-import '../../../../core/widgets/app_bar_widget.dart';
-import '../../../../core/widgets/app_button.dart';
-import '../../../../core/widgets/app_text_field.dart';
-import '../../../../core/widgets/auth_error_banner.dart';
-import '../../../../core/widgets/custom_snackbar.dart';
-import '../bloc/auth_bloc.dart';
-import '../widgets/auth_header.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/localization/l10n_lookup.dart';
+import 'package:ui_kit/core/routing/route_names.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
+import 'package:ui_kit/core/utils/input_validators.dart';
+import 'package:ui_kit/core/widgets/app_bar_widget.dart';
+import 'package:ui_kit/core/widgets/app_button.dart';
+import 'package:ui_kit/core/widgets/app_text_field.dart';
+import 'package:ui_kit/core/widgets/auth_error_banner.dart';
+import 'package:ui_kit/core/widgets/custom_snackbar.dart';
+import 'package:ui_kit/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:ui_kit/features/auth/presentation/widgets/auth_header.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
@@ -48,9 +47,9 @@ class _ForgotPasswordViewState extends State<_ForgotPasswordView> {
   void _submit() {
     context.hideKeyboard();
     if (_formKey.currentState?.validate() ?? false) {
-      context
-          .read<AuthBloc>()
-          .add(AuthForgotPasswordRequested(email: _emailController.text));
+      context.read<AuthBloc>().add(
+        AuthForgotPasswordRequested(email: _emailController.text),
+      );
     }
   }
 

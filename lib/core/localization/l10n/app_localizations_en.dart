@@ -268,6 +268,35 @@ class AppLocalizationsEn extends AppLocalizations {
   String get endsIn => 'Ends in';
 
   @override
+  String get popularSearches => 'Popular searches';
+
+  @override
+  String get noProductsTitle => 'No products yet';
+
+  @override
+  String get noProductsBody =>
+      'There are no products in this category right now.';
+
+  @override
+  String get noResultsTitle => 'No results found';
+
+  @override
+  String noResultsBody(String query) {
+    return 'We couldn\'t find anything for \"$query\". Try a different keyword.';
+  }
+
+  @override
+  String resultsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count results',
+      one: '1 result',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get productDetails => 'Product Details';
 
   @override
@@ -354,6 +383,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get itemRemoved => 'Item removed from cart';
+
+  @override
+  String get each => 'each';
+
+  @override
+  String get secureCheckout => 'Secure checkout';
+
+  @override
+  String get freeShippingUnlocked => 'You\'ve unlocked free shipping!';
+
+  @override
+  String addForFreeShipping(String amount) {
+    return 'Add $amount more for free shipping';
+  }
+
+  @override
+  String cartItemsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count items',
+      one: '1 item',
+      zero: 'No items',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get retry => 'Retry';
@@ -458,6 +513,165 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get logoutConfirmBody =>
       'Are you sure you want to log out of your account?';
+
+  @override
+  String get phoneNumber => 'Phone Number';
+
+  @override
+  String get saveChanges => 'Save Changes';
+
+  @override
+  String get profileUpdated => 'Profile updated successfully';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get defaultLabel => 'Default';
+
+  @override
+  String get setAsDefault => 'Set as default';
+
+  @override
+  String get addNewAddress => 'Add New Address';
+
+  @override
+  String get addressAdded => 'Address added';
+
+  @override
+  String get saveAddress => 'Save Address';
+
+  @override
+  String get addressLabel => 'Label';
+
+  @override
+  String get addressLabelHint => 'Home, Work, ...';
+
+  @override
+  String get recipientName => 'Recipient Name';
+
+  @override
+  String get streetAddress => 'Street Address';
+
+  @override
+  String get cityRegion => 'City / Region';
+
+  @override
+  String get noAddressesTitle => 'No saved addresses';
+
+  @override
+  String get noAddressesBody => 'Add a shipping address to speed up checkout.';
+
+  @override
+  String get addCard => 'Add Card';
+
+  @override
+  String get cardAdded => 'Card added';
+
+  @override
+  String get saveCard => 'Save Card';
+
+  @override
+  String get cardNumber => 'Card Number';
+
+  @override
+  String get cardHolder => 'Cardholder Name';
+
+  @override
+  String get expiryDate => 'Expiry Date';
+
+  @override
+  String get expires => 'Expires';
+
+  @override
+  String get noPaymentTitle => 'No payment methods';
+
+  @override
+  String get noPaymentBody =>
+      'Add a card to check out faster and more securely.';
+
+  @override
+  String get signInSecurity => 'Sign-in & Security';
+
+  @override
+  String get changePassword => 'Change Password';
+
+  @override
+  String get currentPassword => 'Current Password';
+
+  @override
+  String get updatePassword => 'Update Password';
+
+  @override
+  String get passwordChanged => 'Password changed successfully';
+
+  @override
+  String get biometricLogin => 'Biometric Login';
+
+  @override
+  String get biometricLoginSub => 'Use fingerprint or face to sign in';
+
+  @override
+  String get twoFactorAuth => 'Two-Factor Authentication';
+
+  @override
+  String get twoFactorAuthSub => 'Add an extra layer of security';
+
+  @override
+  String get alerts => 'Alerts';
+
+  @override
+  String get loginAlerts => 'Login Alerts';
+
+  @override
+  String get loginAlertsSub => 'Get notified of new sign-ins';
+
+  @override
+  String get deleteAccount => 'Delete Account';
+
+  @override
+  String get deleteAccountConfirmTitle => 'Delete Account?';
+
+  @override
+  String get deleteAccountConfirmBody =>
+      'This will permanently remove your account and all data. This action cannot be undone.';
+
+  @override
+  String get checkoutTitle => 'Checkout';
+
+  @override
+  String get shippingAddress => 'Shipping Address';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get paymentMethod => 'Payment Method';
+
+  @override
+  String get orderSummary => 'Order Summary';
+
+  @override
+  String get estimatedDelivery => 'Estimated delivery';
+
+  @override
+  String get deliveryWindow => '3–5 business days';
+
+  @override
+  String get placeOrder => 'Place Order';
+
+  @override
+  String get orderPlacedTitle => 'Order Placed!';
+
+  @override
+  String get orderPlacedBody =>
+      'Thank you for your purchase. Your order is confirmed and will be on its way to you shortly.';
+
+  @override
+  String get orderNumber => 'Order Number';
+
+  @override
+  String get continueShopping => 'Continue Shopping';
 
   @override
   String get comingSoon => 'Coming Soon';

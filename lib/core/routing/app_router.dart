@@ -11,12 +11,21 @@ import '../../features/auth/presentation/pages/password_reset_success_page.dart'
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/auth/presentation/pages/terms_privacy_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
+import '../../features/cart/domain/entities/promo_code_entity.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
+import '../../features/catalog/presentation/pages/catalog_page.dart';
+import '../../features/catalog/presentation/pages/search_page.dart';
+import '../../features/checkout/presentation/pages/checkout_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/language_select/presentation/pages/language_select_page.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
 import '../../features/product/presentation/pages/product_details_page.dart';
+import '../../features/auth/domain/entities/user_entity.dart';
+import '../../features/profile/presentation/pages/edit_profile_page.dart';
+import '../../features/profile/presentation/pages/payment_methods_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/profile/presentation/pages/saved_addresses_page.dart';
+import '../../features/profile/presentation/pages/security_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
 import '../../features/wishlist/presentation/pages/wishlist_page.dart';
 import '../di/injection.dart';
@@ -120,6 +129,25 @@ class AppRouter {
         name: RouteNames.nCart,
         pageBuilder: (_, state) => _slide(state, const CartPage()),
       ),
+      GoRoute(
+        path: RouteNames.catalog,
+        name: RouteNames.nCatalog,
+        pageBuilder: (_, state) {
+          final args = state.extra as CatalogArgs?;
+          return _slide(
+            state,
+            CatalogPage(
+              title: args?.title ?? '',
+              categoryId: args?.categoryId,
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: RouteNames.search,
+        name: RouteNames.nSearch,
+        pageBuilder: (_, state) => _fade(state, const SearchPage()),
+      ),
 
       GoRoute(
         path: RouteNames.wishlist,
@@ -131,13 +159,43 @@ class AppRouter {
         name: RouteNames.nProfile,
         pageBuilder: (_, state) => _fade(state, const ProfilePage()),
       ),
+      GoRoute(
+        path: RouteNames.editProfile,
+        name: RouteNames.nEditProfile,
+        pageBuilder: (_, state) => _slide(
+          state,
+          EditProfilePage(user: state.extra as UserEntity?),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.savedAddresses,
+        name: RouteNames.nSavedAddresses,
+        pageBuilder: (_, state) => _slide(state, const SavedAddressesPage()),
+      ),
+      GoRoute(
+        path: RouteNames.paymentMethods,
+        name: RouteNames.nPaymentMethods,
+        pageBuilder: (_, state) => _slide(state, const PaymentMethodsPage()),
+      ),
+      GoRoute(
+        path: RouteNames.security,
+        name: RouteNames.nSecurity,
+        pageBuilder: (_, state) => _slide(state, const SecurityPage()),
+      ),
+
+      GoRoute(
+        path: RouteNames.checkout,
+        name: RouteNames.nCheckout,
+        pageBuilder: (_, state) => _slide(
+          state,
+          CheckoutPage(promo: state.extra as PromoCodeEntity?),
+        ),
+      ),
 
       // Reserved routes — placeholder pages until later phases.
-      _reserved(RouteNames.checkout, RouteNames.nCheckout),
       _reserved(RouteNames.orders, RouteNames.nOrders),
       _reserved(RouteNames.notifications, RouteNames.nNotifications),
       _reserved(RouteNames.settings, RouteNames.nSettings),
-      _reserved(RouteNames.search, RouteNames.nSearch),
     ],
     errorBuilder: (_, _) => const ComingSoonPage(),
   );

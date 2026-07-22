@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,11 +17,40 @@ class HeroBannerCarousel extends StatefulWidget {
 }
 
 class _HeroBannerCarouselState extends State<HeroBannerCarousel> {
-  final _controller = PageController(viewportFraction: 0.92);
+  final _controller = PageController(viewportFraction: 0.9);
+  Timer? _autoPlay;
   int _index = 0;
+  double _page = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onScroll);
+    _startAutoPlay();
+  }
+
+  void _onScroll() {
+    final page = _controller.page ?? 0;
+    if (page != _page) setState(() => _page = page);
+  }
+
+  void _startAutoPlay() {
+    if (widget.banners.length < 2) return;
+    _autoPlay = Timer.periodic(const Duration(seconds: 4), (_) {
+      if (!mounted || !_controller.hasClients) return;
+      final next = (_index + 1) % widget.banners.length;
+      _controller.animateToPage(
+        next,
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeOutCubic,
+      );
+    });
+  }
 
   @override
   void dispose() {
+    _autoPlay?.cancel();
+    _controller.removeListener(_onScroll);
     _controller.dispose();
     super.dispose();
   }
@@ -29,12 +60,20 @@ class _HeroBannerCarouselState extends State<HeroBannerCarousel> {
     return Column(
       children: [
         SizedBox(
-          height: 160.h,
+          height: 168.h,
           child: PageView.builder(
             controller: _controller,
             itemCount: widget.banners.length,
             onPageChanged: (i) => setState(() => _index = i),
-            itemBuilder: (_, i) => _BannerCard(banner: widget.banners[i]),
+            itemBuilder: (_, i) {
+              // Scale the active card up and neighbours down for depth.
+              final distance = (_page - i).abs().clamp(0.0, 1.0);
+              final scale = 1 - distance * 0.10;
+              return Transform.scale(
+                scale: scale,
+                child: _BannerCard(banner: widget.banners[i]),
+              );
+            },
           ),
         ),
         SizedBox(height: 12.h),

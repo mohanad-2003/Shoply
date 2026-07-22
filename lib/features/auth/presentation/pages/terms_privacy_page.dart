@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
+import 'package:ui_kit/core/widgets/app_bar_widget.dart';
 
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/theme/app_spacing.dart';
-import '../../../../core/widgets/app_bar_widget.dart';
 
 class TermsPrivacyPage extends StatelessWidget {
   const TermsPrivacyPage({super.key});

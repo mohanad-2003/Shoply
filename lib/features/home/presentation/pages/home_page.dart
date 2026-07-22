@@ -13,7 +13,9 @@ import '../../../../core/widgets/app_bottom_nav.dart';
 import '../../../../core/widgets/custom_snackbar.dart';
 import '../../../../core/widgets/error_state_widget.dart';
 import '../../../../core/widgets/shimmer_widgets.dart';
+import '../../../../core/widgets/staggered_reveal.dart';
 import '../../../../core/routing/route_names.dart';
+import '../../../catalog/presentation/pages/catalog_page.dart';
 import '../../domain/entities/product_entity.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/category_list.dart';
@@ -98,8 +100,7 @@ class _TopBar extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(l10n.goodMorning,
-                        style: context.textTheme.bodySmall),
+                    Text(l10n.goodMorning, style: context.textTheme.bodySmall),
                     Text(l10n.appName, style: context.textTheme.titleLarge),
                   ],
                 ),
@@ -139,49 +140,84 @@ class _HomeContent extends StatelessWidget {
 
     void toggleFav(ProductEntity p) =>
         context.read<HomeBloc>().add(HomeFavoriteToggled(p.id));
-    void openProduct(ProductEntity p) => context.pushNamed(
-          RouteNames.nProduct,
-          pathParameters: {'id': p.id},
-        );
+    void openProduct(ProductEntity p) =>
+        context.pushNamed(RouteNames.nProduct, pathParameters: {'id': p.id});
+    void addToCart(ProductEntity p) {
+      context.read<HomeBloc>().add(HomeAddToCartRequested(p));
+      AppSnackbar.success(context, l10n.addedToCart);
+    }
+
+    void openCatalog(String title, {String? categoryId}) => context.pushNamed(
+      RouteNames.nCatalog,
+      extra: CatalogArgs(title: title, categoryId: categoryId),
+    );
+
+    // Sequential entrance: each block reveals slightly after the previous.
+    var step = 0;
+    Widget reveal(Widget child) => StaggeredReveal(
+      delay: Duration(milliseconds: 80 * step++),
+      child: child,
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSpacing.screenH),
-          child: HeroBannerCarousel(banners: data.banners),
+        reveal(
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSpacing.screenH),
+            child: HeroBannerCarousel(banners: data.banners),
+          ),
         ),
         SizedBox(height: AppSpacing.vXl),
-        Padding(
-          padding: EdgeInsets.only(left: AppSpacing.screenH),
-          child: CategoryList(categories: data.categories),
+        reveal(
+          Padding(
+            padding: EdgeInsets.only(left: AppSpacing.screenH),
+            child: CategoryList(
+              categories: data.categories,
+              onTap: (c) => openCatalog(c.name, categoryId: c.id),
+            ),
+          ),
         ),
         SizedBox(height: AppSpacing.vXl),
-        ProductSection(
-          title: l10n.flashSale,
-          products: data.flashSale,
-          onSeeAll: () =>
-              AppSnackbar.show(context, message: l10n.comingSoon),
-          onProductTap: openProduct,
-          onFavoriteToggle: toggleFav,
+        reveal(
+          ProductSection(
+            title: l10n.flashSale,
+            products: data.flashSale,
+            onSeeAll: () => openCatalog(l10n.flashSale),
+            onProductTap: openProduct,
+            onFavoriteToggle: toggleFav,
+            onAddToCart: addToCart,
+          ),
         ),
-        ProductSection(
-          title: l10n.featured,
-          products: data.featured,
-          onProductTap: openProduct,
-          onFavoriteToggle: toggleFav,
+        reveal(
+          ProductSection(
+            title: l10n.featured,
+            products: data.featured,
+            onSeeAll: () => openCatalog(l10n.featured),
+            onProductTap: openProduct,
+            onFavoriteToggle: toggleFav,
+            onAddToCart: addToCart,
+          ),
         ),
-        ProductSection(
-          title: l10n.newArrivals,
-          products: data.newArrivals,
-          onProductTap: openProduct,
-          onFavoriteToggle: toggleFav,
+        reveal(
+          ProductSection(
+            title: l10n.newArrivals,
+            products: data.newArrivals,
+            onSeeAll: () => openCatalog(l10n.newArrivals),
+            onProductTap: openProduct,
+            onFavoriteToggle: toggleFav,
+            onAddToCart: addToCart,
+          ),
         ),
-        ProductSection(
-          title: l10n.bestSellers,
-          products: data.bestSellers,
-          onProductTap: openProduct,
-          onFavoriteToggle: toggleFav,
+        reveal(
+          ProductSection(
+            title: l10n.bestSellers,
+            products: data.bestSellers,
+            onSeeAll: () => openCatalog(l10n.bestSellers),
+            onProductTap: openProduct,
+            onFavoriteToggle: toggleFav,
+            onAddToCart: addToCart,
+          ),
         ),
         SizedBox(height: AppSpacing.vXxl),
       ],
@@ -213,4 +249,3 @@ class _HomeLoading extends StatelessWidget {
     );
   }
 }
-

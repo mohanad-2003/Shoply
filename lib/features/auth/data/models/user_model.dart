@@ -13,6 +13,7 @@ abstract class UserModel with _$UserModel {
     required String id,
     required String name,
     required String email,
+    String? phone,
     String? avatarUrl,
     String? token,
   }) = _UserModel;
@@ -24,6 +25,7 @@ abstract class UserModel with _$UserModel {
         id: entity.id,
         name: entity.name,
         email: entity.email,
+        phone: entity.phone,
         avatarUrl: entity.avatarUrl,
         token: entity.token,
       );
@@ -32,6 +34,7 @@ abstract class UserModel with _$UserModel {
         id: id,
         name: name,
         email: email,
+        phone: phone,
         avatarUrl: avatarUrl,
         token: token,
       );
