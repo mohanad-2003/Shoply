@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ui_kit/core/di/injection.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/routing/route_names.dart';
+import 'package:ui_kit/core/theme/app_radius.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
+import 'package:ui_kit/core/widgets/custom_snackbar.dart';
+import 'package:ui_kit/features/catalog/presentation/cubit/catalog_cubit.dart';
+import 'package:ui_kit/features/catalog/presentation/widgets/product_grid.dart';
+import 'package:ui_kit/features/home/domain/entities/product_entity.dart';
 
-import '../../../../core/di/injection.dart';
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/theme/app_radius.dart';
-import '../../../../core/theme/app_spacing.dart';
-import '../../../../core/widgets/custom_snackbar.dart';
 import '../../../../core/widgets/empty_state_widget.dart';
-import '../../../home/domain/entities/product_entity.dart';
-import '../cubit/catalog_cubit.dart';
-import '../widgets/product_grid.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -105,48 +105,48 @@ class _SearchViewState extends State<_SearchView> {
           builder: (context, state) {
             return switch (state.status) {
               CatalogStatus.initial => _Suggestions(
-                  terms: _suggestions,
-                  onTap: _submitTerm,
-                ),
+                terms: _suggestions,
+                onTap: _submitTerm,
+              ),
               CatalogStatus.loading => const Center(
-                  child: CircularProgressIndicator(),
-                ),
+                child: CircularProgressIndicator(),
+              ),
               CatalogStatus.empty => EmptyStateWidget(
-                  title: l10n.noResultsTitle,
-                  message: l10n.noResultsBody(state.query),
-                  icon: Icons.search_off_rounded,
-                ),
+                title: l10n.noResultsTitle,
+                message: l10n.noResultsBody(state.query),
+                icon: Icons.search_off_rounded,
+              ),
               _ => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(
-                        AppSpacing.screenH,
-                        AppSpacing.vMd,
-                        AppSpacing.screenH,
-                        0,
-                      ),
-                      child: Text(
-                        l10n.resultsCount(state.products.length),
-                        style: context.textTheme.labelLarge?.copyWith(
-                          color: context.colors.onSurfaceVariant,
-                        ),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      AppSpacing.screenH,
+                      AppSpacing.vMd,
+                      AppSpacing.screenH,
+                      0,
+                    ),
+                    child: Text(
+                      l10n.resultsCount(state.products.length),
+                      style: context.textTheme.labelLarge?.copyWith(
+                        color: context.colors.onSurfaceVariant,
                       ),
                     ),
-                    Expanded(
-                      child: ProductGrid(
-                        products: state.products,
-                        onProductTap: (p) => _open(context, p),
-                        onFavoriteToggle: (p) =>
-                            context.read<CatalogCubit>().toggleFavorite(p.id),
-                        onAddToCart: (p) {
-                          context.read<CatalogCubit>().addToCart(p);
-                          AppSnackbar.success(context, l10n.addedToCart);
-                        },
-                      ),
+                  ),
+                  Expanded(
+                    child: ProductGrid(
+                      products: state.products,
+                      onProductTap: (p) => _open(context, p),
+                      onFavoriteToggle: (p) =>
+                          context.read<CatalogCubit>().toggleFavorite(p.id),
+                      onAddToCart: (p) {
+                        context.read<CatalogCubit>().addToCart(p);
+                        AppSnackbar.success(context, l10n.addedToCart);
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
             };
           },
         ),
@@ -154,10 +154,8 @@ class _SearchViewState extends State<_SearchView> {
     );
   }
 
-  void _open(BuildContext context, ProductEntity p) => context.pushNamed(
-        RouteNames.nProduct,
-        pathParameters: {'id': p.id},
-      );
+  void _open(BuildContext context, ProductEntity p) =>
+      context.pushNamed(RouteNames.nProduct, pathParameters: {'id': p.id});
 }
 
 class _SearchField extends StatelessWidget {

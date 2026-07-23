@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/theme/app_radius.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
+import 'package:ui_kit/core/widgets/rating_stars.dart';
+import 'package:ui_kit/features/product/domain/entities/review_entity.dart';
 
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/theme/app_radius.dart';
-import '../../../../core/theme/app_spacing.dart';
-import '../../../../core/widgets/rating_stars.dart';
-import '../../domain/entities/review_entity.dart';
 
 class RatingSummary extends StatelessWidget {
   const RatingSummary({

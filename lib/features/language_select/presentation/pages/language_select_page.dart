@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../core/di/injection.dart';
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/theme/app_radius.dart';
-import '../../../../core/theme/app_spacing.dart';
-import '../../../../core/widgets/app_button.dart';
-import '../../../../core/widgets/language_option_tile.dart';
-import '../cubit/language_select_cubit.dart';
+import 'package:ui_kit/core/di/injection.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/routing/route_names.dart';
+import 'package:ui_kit/core/theme/app_radius.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
+import 'package:ui_kit/core/widgets/app_button.dart';
+import 'package:ui_kit/core/widgets/language_option_tile.dart';
+import 'package:ui_kit/features/language_select/presentation/cubit/language_select_cubit.dart';
 
 class LanguageSelectPage extends StatelessWidget {
   const LanguageSelectPage({super.key});
@@ -57,44 +56,47 @@ class _LanguageSelectView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                    width: 72.w,
-                    height: 72.w,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: context.colors.primary.withValues(alpha: 0.12),
-                      borderRadius: AppRadius.rXl,
-                    ),
-                    child: Icon(
-                      Icons.language_rounded,
-                      size: 36.r,
-                      color: context.colors.primary,
-                    ),
-                  ),
-                  SizedBox(height: AppSpacing.vXxl),
-                  Text(l10n.selectLanguage, style: context.textTheme.displayLarge),
-                  SizedBox(height: AppSpacing.vMd),
-                  Text(
-                    l10n.selectLanguageSubtitle,
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      color: context.colors.onSurfaceVariant,
-                    ),
-                  ),
-                  SizedBox(height: AppSpacing.vXxxl),
-                  LanguageOptionTile(
-                    title: 'English',
-                    subtitle: 'English',
-                    glyph: '🇬🇧',
-                    selected: !isArabic,
-                    onTap: () => cubit.select(const Locale('en')),
-                  ),
-                  SizedBox(height: AppSpacing.vLg),
-                  LanguageOptionTile(
-                    title: 'العربية',
-                    subtitle: 'Arabic',
-                    glyph: '🇸🇦',
-                    selected: isArabic,
-                    onTap: () => cubit.select(const Locale('ar')),
-                  ),
+                        width: 72.w,
+                        height: 72.w,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: context.colors.primary.withValues(alpha: 0.12),
+                          borderRadius: AppRadius.rXl,
+                        ),
+                        child: Icon(
+                          Icons.language_rounded,
+                          size: 36.r,
+                          color: context.colors.primary,
+                        ),
+                      ),
+                      SizedBox(height: AppSpacing.vXxl),
+                      Text(
+                        l10n.selectLanguage,
+                        style: context.textTheme.displayLarge,
+                      ),
+                      SizedBox(height: AppSpacing.vMd),
+                      Text(
+                        l10n.selectLanguageSubtitle,
+                        style: context.textTheme.bodyLarge?.copyWith(
+                          color: context.colors.onSurfaceVariant,
+                        ),
+                      ),
+                      SizedBox(height: AppSpacing.vXxxl),
+                      LanguageOptionTile(
+                        title: 'English',
+                        subtitle: 'English',
+                        glyph: '🇬🇧',
+                        selected: !isArabic,
+                        onTap: () => cubit.select(const Locale('en')),
+                      ),
+                      SizedBox(height: AppSpacing.vLg),
+                      LanguageOptionTile(
+                        title: 'العربية',
+                        subtitle: 'Arabic',
+                        glyph: '🇸🇦',
+                        selected: isArabic,
+                        onTap: () => cubit.select(const Locale('ar')),
+                      ),
                       SizedBox(height: AppSpacing.vXxxl),
                       AppButton(
                         label: l10n.continueLabel,

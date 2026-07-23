@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/extensions/num_extensions.dart';
-import '../../../../core/theme/app_spacing.dart';
-import '../../domain/entities/cart_summary_entity.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/extensions/num_extensions.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
+import 'package:ui_kit/features/cart/domain/entities/cart_summary_entity.dart';
 
 class PriceSummaryCard extends StatelessWidget {
   const PriceSummaryCard({super.key, required this.summary});

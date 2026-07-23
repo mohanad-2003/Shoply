@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/theme/app_colors.dart';
+import 'package:ui_kit/core/theme/app_radius.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
+import 'package:ui_kit/features/cart/domain/entities/promo_code_entity.dart';
 
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_radius.dart';
-import '../../../../core/theme/app_spacing.dart';
-import '../../domain/entities/promo_code_entity.dart';
 
 class PromoCodeInput extends StatefulWidget {
   const PromoCodeInput({

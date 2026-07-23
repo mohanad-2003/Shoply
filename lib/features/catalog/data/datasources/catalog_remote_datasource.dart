@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
+import 'package:ui_kit/core/constants/app_constants.dart';
+import 'package:ui_kit/core/mock/mock_catalog.dart';
+import 'package:ui_kit/features/home/domain/entities/product_entity.dart';
 
-import '../../../../core/constants/app_constants.dart';
-import '../../../../core/mock/mock_catalog.dart';
-import '../../../home/domain/entities/product_entity.dart';
 
 /// Mocked catalog backend backed by the shared [MockCatalog]. A real
 /// datasource would translate these into API calls with query params.

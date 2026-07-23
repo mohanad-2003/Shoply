@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
 
-import '../extensions/context_extensions.dart';
-import '../theme/app_spacing.dart';
 import 'app_button.dart';
 
 /// Friendly empty-state placeholder (e.g. empty cart).

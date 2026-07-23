@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/localization/l10n_lookup.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_radius.dart';
-import '../../../../core/theme/app_spacing.dart';
-import '../../domain/entities/onboarding_page_entity.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/localization/l10n_lookup.dart';
+import 'package:ui_kit/core/theme/app_colors.dart';
+import 'package:ui_kit/core/theme/app_radius.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
+import 'package:ui_kit/features/onboarding/domain/entities/onboarding_page_entity.dart';
 
 class OnboardingSlide extends StatelessWidget {
   const OnboardingSlide({

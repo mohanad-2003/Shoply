@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/extensions/num_extensions.dart';
+import 'package:ui_kit/core/theme/app_spacing.dart';
+import 'package:ui_kit/core/widgets/app_button.dart';
+import 'package:ui_kit/core/widgets/quantity_selector.dart';
 
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/extensions/num_extensions.dart';
-import '../../../../core/theme/app_spacing.dart';
-import '../../../../core/widgets/app_button.dart';
-import '../../../../core/widgets/quantity_selector.dart';
 
 /// Sticky bottom bar: quantity stepper + total price + Add to Cart.
 class ProductActionsBar extends StatelessWidget {

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ui_kit/core/di/injection.dart';
+import 'package:ui_kit/core/extensions/context_extensions.dart';
+import 'package:ui_kit/core/localization/l10n_lookup.dart';
+import 'package:ui_kit/core/routing/route_names.dart';
+import 'package:ui_kit/core/widgets/app_bar_widget.dart';
+import 'package:ui_kit/core/widgets/custom_snackbar.dart';
+import 'package:ui_kit/features/catalog/presentation/cubit/catalog_cubit.dart';
+import 'package:ui_kit/features/home/domain/entities/product_entity.dart';
 
-import '../../../../core/di/injection.dart';
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/localization/l10n_lookup.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/widgets/app_bar_widget.dart';
-import '../../../../core/widgets/custom_snackbar.dart';
 import '../../../../core/widgets/empty_state_widget.dart';
 import '../../../../core/widgets/error_state_widget.dart';
-import '../../../home/domain/entities/product_entity.dart';
-import '../cubit/catalog_cubit.dart';
 import '../widgets/product_grid.dart';
 
 /// Navigation payload for [CatalogPage], passed as go_router `extra`.
